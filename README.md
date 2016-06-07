@@ -1,4 +1,6 @@
 # 超强vim配置文件
+> fork 原作者，根据自己需求修改的版本，可以通过下文安转原版本
+个人版本使用本库setup.sh进行安装
 
 [![Build Status](https://travis-ci.org/ma6174/vim.png?branch=master)](https://travis-ci.org/ma6174/vim)
 
@@ -9,7 +11,7 @@
 ### 简易安装方法：
 
 打开终端，执行下面的命令就自动安装好了：
-
+原作者版本 ：
 `wget -qO- https://raw.github.com/ma6174/vim/master/setup.sh | sh -x`
 
 ### 或者自己手动安装：(以ubuntu为例)
