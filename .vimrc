@@ -16,7 +16,6 @@ set shiftwidth=8
 
 "语言设置
 set langmenu=zh_CN.UTF-8
-set helplang=cn
 
 " 使用空格代替制表符
 "set expandtab
@@ -66,10 +65,14 @@ autocmd InsertEnter * se nocuc
 set shortmess=atI               " 启动的时候不显示那个援助乌干达儿童的提示  
 set go=                         " 不要图形按钮  
 
+"color molokai
+color candy
+"colorscheme koehler             "设定配色方案
 "color desert                   " 设置背景主题  
-color ron                       " 设置背景主题  
+"color ron                       " 设置背景主题  
 "color torte                    " 设置背景主题  
 "set guifont=Courier_New:h10:cANSI   " 设置字体  
+"set guifont=WenQuanYi\ Zen\ Hei\ Mono\ 12.5
 
 set ruler                       " 显示标尺  
 set showcmd                     " 输入的命令显示出来，看的清楚些  
@@ -81,7 +84,7 @@ set foldenable                  " 允许折叠
 
 "显示中文帮助
 if version >= 603
-	set helplang=cn
+        set helplang=cn
 	set encoding=utf-8
 endif
 
@@ -176,11 +179,11 @@ autocmd BufNewFile * normal G
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""" keyboardmap
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" map <C-w> <C-w>w
-map <C-w>h <C-h>
-map <C-w>j <C-j>
-map <C-w>k <C-k>
-map <C-w>l <C-l>
+"map <C-w> <C-w>w
+"map <C-w>h <C-h>
+"map <C-w>j <C-j>
+"map <C-w>k <C-k>
+"map <C-w>l <C-l>
 
 " 全选
 map <C-A> ggVG$"+y
@@ -197,15 +200,8 @@ imap <F3> <ESC> :NERDTreeToggle<CR>
 " 打开树状文件目录  
 map <C-F3> \be 
 
-"C，C++ 按F5编译运行
-map <F5> :call CompileRunGcc()<CR>
-
-"代码格式优化化
-map <F6> :call FormartSrc()<CR><CR>
-
-"C,C++的调试
-map <F8> :call Rungdb()<CR>
-
+map <F4> :call Do_CsTag()<CR>
+map <F5> :call Link()<CR>
 
 nmap <silent> <F9> <ESC>:Tlist<RETURN>
 
@@ -213,18 +209,34 @@ nmap <silent> <F9> <ESC>:Tlist<RETURN>
 " 代码格式化
 map <F12> gg=G
 
+function! Link()
+	if filereadable("tags")
+		set tags=tags
+	endif
+	if filereadable("cscope.out")
+		execute "cs add cscope.out"
+	endif
+endf
+
+function! Do_CsTag()
+    "silent! execute "!ctags -R --c++-kinds=+p--fields=+iaS--extra=+q"
+    silent! execute "!ctags -R --languages=c++ --langmap=c++:+.inl -h +.inl --c++-kinds=+px --fields=+aiKSz --extra=+q *"
+    silent! execute "!find . -name '*.h' -o -name '*.c' -o -name '*.cc' -o -name '*.cpp' -o -name '*.cxx' -o -name '*.hxx' > cscope.files"
+    silent!execute "!cscope -bq -i cscope.files"
+    execute "cs add cscope.out"
+endf
+
+
+
 "将tab替换为空格
 nmap tt :%s/\t/    /g<CR>
-
 
 imap <C-a> <Esc>^
 imap <C-e> <Esc>$
 
-
 " tab 切换
 map <S-Left> :tabp<CR>
 map <S-Right> :tabn<CR>
-
 
 imap <C-j> <ESC>
 
@@ -232,65 +244,6 @@ imap <C-j> <ESC>
 nnoremap <Leader>fu :CtrlPFunky<Cr>
 "nnoremap <C-n> :CtrlPFunky<Cr>
 :autocmd BufRead,BufNewFile *.dot map <F5> :w<CR>:!dot -Tjpg -o %<.jpg % && eog %<.jpg  <CR><CR> && exec "redr!"
-
-
-
-func! CompileRunGcc()
-	exec "w"
-	if &filetype == 'c'
-		exec "!g++ % -o %<"
-		exec "!time ./%<"
-	elseif &filetype == 'cpp'
-		exec "!g++ % -o %<"
-		exec "!time ./%<"
-	elseif &filetype == 'java' 
-		exec "!javac %" 
-		exec "!time java %<"
-	elseif &filetype == 'sh'
-		:!time bash %
-	elseif &filetype == 'python'
-		exec "!time python2.7 %"
-        elseif &filetype == 'html'
-                exec "!firefox % &"
-        elseif &filetype == 'go'
-"        exec "!go build %<"
-                exec "!time go run %"
-        elseif &filetype == 'mkd'
-                exec "!~/.vim/markdown.pl % > %.html &"
-                exec "!firefox %.html &"
-	endif
-endfunc
-
-func! Rungdb()
-	exec "w"
-	exec "!g++ % -g -o %<"
-	exec "!gdb ./%<"
-endfunc
-
-"定义FormartSrc()
-func FormartSrc()
-    exec "w"
-    if &filetype == 'c'
-        exec "!astyle --style=ansi -a --suffix=none %"
-    elseif &filetype == 'cpp' || &filetype == 'hpp'
-        exec "r !astyle --style=ansi --one-line=keep-statements -a --suffix=none %> /dev/null 2>&1"
-    elseif &filetype == 'perl'
-        exec "!astyle --style=gnu --suffix=none %"
-    elseif &filetype == 'py'||&filetype == 'python'
-        exec "r !autopep8 -i --aggressive %"
-    elseif &filetype == 'java'
-        exec "!astyle --style=java --suffix=none %"
-    elseif &filetype == 'jsp'
-        exec "!astyle --style=gnu --suffix=none %"
-    elseif &filetype == 'xml'
-        exec "!astyle --style=gnu --suffix=none %"
-    else
-        exec "normal gg=G"
-        return
-    endif
-    exec "e! %"
-endfunc
-"结束定义FormartSrc
 
 "mrkdown to HTML  
 nmap md :!~/.vim/markdown.pl % > %.html <CR><CR>
@@ -375,9 +328,13 @@ set completeopt=longest,menu
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CTags的设定  
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"设置tags  
 set tags=tags;  
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" cscope的设定  
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+".vim/plugin/cscope_maps.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tag list (ctags) 
