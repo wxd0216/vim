@@ -195,15 +195,22 @@ nnoremap <C-F2> :vert diffsplit
 
 
 " 列出当前目录文件  
-map <F3> :NERDTreeToggle<CR>
+map <silent><F3> :NERDTreeToggle<CR>
 imap <F3> <ESC> :NERDTreeToggle<CR>
 " 打开树状文件目录  
 map <C-F3> \be 
 
 map <F4> :call Do_CsTag()<CR>
-map <F5> :call Link()<CR>
+map <C-F4> :call Link()<CR>
 
-nmap <silent> <F9> <ESC>:Tlist<RETURN>
+
+nnoremap <silent><F5> :A<CR>
+"nnoremap <silent><F5>v :AS<CR>
+"nnoremap <silent><F5>s :AV<CR>
+"nnoremap <silent><C-F5>  :IHS<CR>
+"nnoremap <silent><C-F5>v :IHV<CR>
+
+nmap <silent><F9> <ESC>:Tlist<RETURN>
 
 
 " 代码格式化
