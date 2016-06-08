@@ -272,6 +272,13 @@ endif
 autocmd vimenter * if !argc() | NERDTree | endif
 " 只剩 NERDTree时自动关闭
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+let NERDTreeShowLineNumbers=1
+let NERDTreeAutoCenter=1
+" show hiden file??
+let NERDTreeShowHidden=1
+" ignore File
+let NERDTreeIgnore=['\.pyc','\~$','\.swp','\.git']
+"let NERDTreeShowBookmarks=1
 
 
 " 设置当文件被改动时自动载入
@@ -445,5 +452,4 @@ let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_custom_ignore = '\v\.(exe|so|dll)$'
 let g:ctrlp_extensions = ['funky']
 
-let NERDTreeIgnore=['\.pyc']
 
