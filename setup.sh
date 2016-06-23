@@ -3,15 +3,15 @@
 echo "Start Start Start !!!\n"
 echo "Install app"
 if which apt-get >/dev/null; then
-	sudo apt-get install -y vim vim-gtk ctags xclip git astyle #python-setuptools python-dev
+	sudo apt-get install -y vim vim-gtk ctags cscope xclip git astyle #python-setuptools python-dev
 elif which yum >/dev/null; then
-	sudo yum install -y gcc vim git ctags xclip  astyle #python-setuptools python-devel	
+	sudo yum install -y gcc vim git ctags cscope xclip  astyle #python-setuptools python-devel	
 fi
 
 ##Add HomeBrew support on  Mac OS
 if which brew >/dev/null;then
     echo "You are using HomeBrew tool"
-    brew install vim ctags git astyle
+    brew install vim ctags cscope git astyle
 fi
 
 sudo ln -s /usr/bin/ctags /usr/local/bin/ctags
