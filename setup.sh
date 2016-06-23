@@ -3,7 +3,7 @@
 echo "Start Start Start !!!\n"
 echo "Install app"
 if which apt-get >/dev/null; then
-	sudo apt-get install -y vim vim-gnome ctags xclip git astyle #python-setuptools python-dev
+	sudo apt-get install -y vim vim-gtk ctags xclip git astyle #python-setuptools python-dev
 elif which yum >/dev/null; then
 	sudo yum install -y gcc vim git ctags xclip  astyle #python-setuptools python-devel	
 fi
