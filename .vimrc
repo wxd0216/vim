@@ -229,7 +229,7 @@ endf
 function! Do_CsTag()
     "silent! execute "!ctags -R --c++-kinds=+p--fields=+iaS--extra=+q"
     silent! execute "!ctags -R --languages=c++ --langmap=c++:+.inl -h +.inl --c++-kinds=+px --fields=+aiKSz --extra=+q *"
-    silent! execute "!find . -name '*.h' -o -name '*.c' -o -name '*.cc' -o -name '*.cpp' -o -name '*.cxx' -o -name '*.hxx' > cscope.files"
+    silent! execute "!find . -name '*.h' -o -name '*.c' -o -name '*.cc' -o -name '*.cpp' -o -name '*.cxx' -o -name '*.hxx' -o -name '*.py' > cscope.files"
     silent!execute "!cscope -bq -i cscope.files"
     execute "cs add cscope.out"
 endf
@@ -350,6 +350,8 @@ set tags=tags;
 " cscope的设定  
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ".vim/plugin/cscope_maps.vim
+" show result in quickfix
+" set cscopequickfix=s-,c-,d-,i-,t-,e- 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tag list (ctags) 
