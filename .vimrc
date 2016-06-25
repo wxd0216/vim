@@ -121,7 +121,6 @@ au BufRead,BufNewFile *.{js}   set filetype=javascript
 
 
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""" newfiletitle
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -138,12 +137,10 @@ func SetTitle()
                 call setline(1,"#!/usr/bin/env python")
                 call append(line("."),"# coding=utf-8")
 	        call append(line(".")+1, "") 
-
         elseif &filetype == 'ruby'
                 call setline(1,"#!/usr/bin/env ruby")
                 call append(line("."),"# encoding: utf-8")
 	        call append(line(".")+1, "")
-
 	else 
 		call setline(1, "/*************************************************************************") 
 		call append(line("."), "	> File Name: ".expand("%")) 
@@ -397,7 +394,7 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 " 插件管理
 "
 set nocompatible               " be iMproved
-filetype off                   " required!
+"filetype off                   " required!
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -443,6 +440,8 @@ Bundle 'Vim-Script-Updater'
 Bundle 'The-NERD-Commenter'
 " 远程协作
 "Bundle 'FredKSchott/CoVim'
+
+Bundle 'Lokaltog/vim-powerline'
 
 "载入文件类型插件
 filetype plugin on
