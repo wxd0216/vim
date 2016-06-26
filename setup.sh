@@ -16,18 +16,22 @@ fi
 
 sudo ln -s /usr/bin/ctags /usr/local/bin/ctags
 
+rm ~/.vim_old_lcd/ -rf
+rm ~/.vimrc_old_lcd -f
+
 mv -f ~/.vim/  ~/.vim_old_lcd/
 mv -f ~/.vimrc ~/.vimrc_old_lcd
 
 cd ~/ && git clone https://github.com/lcdsdream/vim.git
 
+
 mv -f ~/vim ~/.vim
-mv -f ~/.vim/.vimrc ~/
+cp ~/.vim/.vimrc ~/ 
 
 git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 echo "lcddcl start install bundle" > lcdinstall
 echo "please wati" >> lcdinstall
 
-vim lcdinstall -c "BundleInstall" -c "q" -c "q"
+vim lcdinstall -c "BundleInstall" -c "BundleClean" -c "q" -c "q"
 rm lcdinstall
 echo "lcd's vim install finished"
