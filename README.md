@@ -7,9 +7,10 @@
 
 ### 简易安装方法：
 
-打开终端，执行下面的命令就自动安装好了：
-原作者版本 ：
-`wget -qO- https://raw.github.com/lcdsdream/vim/master/setup.sh | sh -x`
+* 打开终端，执行下面的命令就自动安装好了：
+```
+wget -qO- https://raw.github.com/lcdsdream/vim/master/setup.sh | sh -x
+```
 
 ### 使用说明：
 
