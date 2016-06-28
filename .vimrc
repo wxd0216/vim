@@ -66,11 +66,11 @@ set shortmess=atI               " 启动的时候不显示那个援助乌干达�
 set go=                         " 不要图形按钮  
 
 if has('gui_running')
-	"http://ethanschoonover.com/solarized
-	color solarized
-	set background=dark
+        "http://ethanschoonover.com/solarized
+        color solarized
+        set background=dark
 else
-	color torte                    " 设置背景主题  
+        color torte                    " 设置背景主题  
 endif
 "set guifont=Courier_New:h10:cANSI   " 设置字体  
 "set guifont=WenQuanYi\ Zen\ Hei\ Mono\ 12.5
@@ -85,7 +85,7 @@ set foldenable                  " 允许折叠
 
 "显示中文帮助
 if version >= 603
-	set helplang=cn
+        set helplang=cn
 	set encoding=utf-8
 endif
 
@@ -133,14 +133,14 @@ func SetTitle()
 	if &filetype == 'sh' 
 		call setline(1,"\#!/bin/bash") 
 		call append(line("."), "") 
-	elseif &filetype == 'python'
-		call setline(1,"#!/usr/bin/env python")
-		call append(line("."),"# coding=utf-8")
-		call append(line(".")+1, "") 
-	elseif &filetype == 'ruby'
-		call setline(1,"#!/usr/bin/env ruby")
-		call append(line("."),"# encoding: utf-8")
-		call append(line(".")+1, "")
+        elseif &filetype == 'python'
+                call setline(1,"#!/usr/bin/env python")
+                call append(line("."),"# coding=utf-8")
+	        call append(line(".")+1, "") 
+        elseif &filetype == 'ruby'
+                call setline(1,"#!/usr/bin/env ruby")
+                call append(line("."),"# encoding: utf-8")
+	        call append(line(".")+1, "")
 	else 
 		call setline(1, "/*************************************************************************") 
 		call append(line("."), "	> File Name: ".expand("%")) 
@@ -195,11 +195,13 @@ nnoremap <C-F2> :vert diffsplit
 " 列出当前目录文件  
 map <silent><F3> :NERDTreeToggle<CR>
 imap <F3> <ESC> :NERDTreeToggle<CR>
-
+" 打开树状文件目录  
+map <C-F3> \be 
 
 map <F4> :call Do_CsTag()<CR>
 map <C-F4> :call Link()<CR>
-
+map <F6> :call Set_index_4()<CR>
+map <C-F6> :call Set_index_kernel()<CR>
 
 nnoremap <silent><F5> :A<CR>
 "nnoremap <silent><F5>v :AS<CR>
@@ -223,14 +225,28 @@ function! Link()
 endf
 
 function! Do_CsTag()
-	"silent! execute "!ctags -R --c++-kinds=+p--fields=+iaS--extra=+q"
-	silent! execute "!ctags -R --languages=c++ --langmap=c++:+.inl -h +.inl --c++-kinds=+px --fields=+aiKSz --extra=+q *"
-	silent! execute "!find . -name '*.h' -o -name '*.c' -o -name '*.cc' -o -name '*.cpp' -o -name '*.cxx' -o -name '*.hxx' -o -name '*.py' > cscope.files"
-	silent!execute "!cscope -bq -i cscope.files"
-	execute "cs add cscope.out"
+    "silent! execute "!ctags -R --c++-kinds=+p--fields=+iaS--extra=+q"
+    silent! execute "!ctags -R --languages=c++ --langmap=c++:+.inl -h +.inl --c++-kinds=+px --fields=+aiKSz --extra=+q *"
+    silent! execute "!find . -name '*.h' -o -name '*.c' -o -name '*.cc' -o -name '*.cpp' -o -name '*.cxx' -o -name '*.hxx' -o -name '*.py' > cscope.files"
+    silent!execute "!cscope -bq -i cscope.files"
+    execute "cs add cscope.out"
 endf
 
 
+function! Set_index_4()
+    set tabstop=4
+    set softtabstop=4
+    set shiftwidth=4
+    "set expandtab
+    set smarttab
+endf
+
+function! Set_index_kernel()
+    set tabstop=8
+    set softtabstop=8
+    set shiftwidth=8
+    set noexpandtab
+endf
 
 "将tab替换为空格
 nmap tt :%s/\t/    /g<CR>
@@ -244,10 +260,9 @@ map <S-Right> :tabn<CR>
 
 imap <C-j> <ESC>
 
-
-
 "set clipboard=unnamed
 nnoremap <Leader>fu :CtrlPFunky<Cr>
+"nnoremap <C-n> :CtrlPFunky<Cr>
 :autocmd BufRead,BufNewFile *.dot map <F5> :w<CR>:!dot -Tjpg -o %<.jpg % && eog %<.jpg  <CR><CR> && exec "redr!"
 
 "mrkdown to HTML  
@@ -260,10 +275,10 @@ vmap \ \cc
 """""""""" othersetting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("autocmd")
-	autocmd BufReadPost *
-				\ if line("'\"") > 0 && line("'\"") <= line("$") |
-				\   exe "normal g`\"" |
-				\ endif
+      autocmd BufReadPost *
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal g`\"" |
+        \ endif
 endif
 
 "当打开vim且没有文件时自动打开NERDTree
@@ -406,6 +421,7 @@ call vundle#rc()
 " "     :BundleInstall!    update  更新
 " "     :BundleClean       remove plugin not in list 删除本地无用插件
 Bundle 'gmarik/vundle'
+
 " original repos on github
 Bundle 'L9'
 " 集成git， 命令行中 ：Gdiff 看看
