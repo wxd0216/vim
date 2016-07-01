@@ -229,6 +229,7 @@ function! Do_CsTag()
     silent! execute "!ctags -R --languages=c++ --langmap=c++:+.inl -h +.inl --c++-kinds=+px --fields=+aiKSz --extra=+q *"
     silent! execute "!find . -name '*.h' -o -name '*.c' -o -name '*.cc' -o -name '*.cpp' -o -name '*.cxx' -o -name '*.hxx' -o -name '*.py' > cscope.files"
     silent!execute "!cscope -bq -i cscope.files"
+    execute "cs kill -1"
     execute "cs add cscope.out"
 endf
 
@@ -237,7 +238,7 @@ function! Set_index_4()
     set tabstop=4
     set softtabstop=4
     set shiftwidth=4
-    "set expandtab
+    set expandtab
     set smarttab
 endf
 
