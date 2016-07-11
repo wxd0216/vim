@@ -143,7 +143,7 @@ func SetTitle()
 	        call append(line(".")+1, "")
 	else 
 		call setline(1, "/*************************************************************************") 
-		call append(line("."), "	> File Name: ".expand("%")) 
+		call append(line("."), "	> File Name: ".expand("%:t")) 
 		call append(line(".")+1, "	> Author: orient lu") 
 		call append(line(".")+2, "	> Mail: lcdsdream@126.com") 
 		call append(line(".")+3, "	> Created Time: ".strftime("%c")) 
@@ -161,12 +161,12 @@ func SetTitle()
 		call append(line(".")+7, "")
 	endif
 	if expand("%:e") == 'h'
-		call append(line(".")+6, "#ifndef _".toupper(expand("%:r"))."_H")
-		call append(line(".")+7, "#define _".toupper(expand("%:r"))."_H")
+		call append(line(".")+6, "#ifndef _".toupper(expand("%:t:r"))."_H")
+		call append(line(".")+7, "#define _".toupper(expand("%:t:r"))."_H")
 		call append(line(".")+8, "#endif")
 	endif
 	if &filetype == 'java'
-		call append(line(".")+6,"public class ".expand("%:r"))
+		call append(line(".")+6,"public class ".expand("%:t:r"))
 		call append(line(".")+7,"")
 	endif
 	"新建文件后，自动定位到文件末尾
@@ -211,6 +211,7 @@ nnoremap <silent><F5> :A<CR>
 
 nmap <silent><F9> <ESC>:Tlist<RETURN>
 
+nmap <silent><F11> <ESC>:ConqueTerm bash<RETURN>
 
 " 代码格式化
 map <F12> gg=G
