@@ -24,6 +24,21 @@ set noexpandtab
 " set expandtab后，设置smarttab，在删除tab（4个空格）只需以下Backspace
 set smarttab
 
+au BufNewFile, BufRead *.py
+                        \set tabstop=4
+                        \ set softtabstop=4
+                        \ set shiftwidth=4
+                        \ set textwidth=79
+                        \ set expandtab
+                        \ set autoindent
+                        \ set fileformat=unix
+
+au BufNewFile,BufRead *.js, *.html, *.css
+                        \ set tabstop=2
+                        \ set softtabstop=2
+                        \ set shiftwidth=2
+
+
 " 显示括号配对情况
 set sm
 " 设置选择文本时候，包括光标所在
@@ -51,6 +66,7 @@ let g:fencview_autodetect=0
 set rtp+=$GOROOT/misc/vim
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let python_highlight_all=1
 syntax on
 
 " 显示标尺
@@ -459,6 +475,8 @@ Bundle 'The-NERD-Commenter'
 "Bundle 'FredKSchott/CoVim'
 
 Bundle 'Lokaltog/vim-powerline'
+Plugin 'vim-scripts/indentpython.vim'
+Plugin 'nvie/vim-flake8'
 
 "载入文件类型插件
 filetype plugin on
