@@ -3,15 +3,15 @@
 echo "Start Start Start !!!\n"
 echo "Install app"
 if which apt-get >/dev/null; then
-	sudo apt-get install -y vim vim-gtk ctags cscope xclip git astyle #python-setuptools python-dev
+	sudo apt-get install -y vim vim-gtk ctags cscope xclip git astyle #python-setuptools python-dev tmux
 elif which yum >/dev/null; then
-	sudo yum install -y gcc vim git ctags cscope xclip  astyle #python-setuptools python-devel	
+	sudo yum install -y gcc vim git ctags cscope xclip  astyle #python-setuptools python-devel tmux
 fi
 
 ##Add HomeBrew support on  Mac OS
 if which brew >/dev/null;then
     echo "You are using HomeBrew tool"
-    brew install vim ctags cscope git astyle
+    brew install vim ctags cscope git astyle tmux
 fi
 
 sudo ln -s /usr/bin/ctags /usr/local/bin/ctags
@@ -27,6 +27,11 @@ cd ~/ && git clone https://github.com/lcdsdream/vim.git
 
 mv -f ~/vim ~/.vim
 cp ~/.vim/.vimrc ~/ 
+
+# other setup
+cp ~/.vim/other_sh/.tmux.conf ~/
+sudo cp ~/.vim/other_sh/kill.sh  ~/usr/bin/
+~/.vim/other_sh/git_setup.sh
 
 git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 echo "lcddcl start install bundle" > lcdinstall
