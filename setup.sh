@@ -3,9 +3,9 @@
 echo "Start Start Start !!!\n"
 echo "Install app"
 if which apt-get >/dev/null; then
-	sudo apt-get install -y vim vim-gtk ctags cscope xclip git astyle #python-setuptools python-dev tmux
+	sudo apt-get install -y vim vim-gtk ctags cscope xclip git astyle tmux #python-setuptools python-dev
 elif which yum >/dev/null; then
-	sudo yum install -y gcc vim git ctags cscope xclip  astyle #python-setuptools python-devel tmux
+	sudo yum install -y gcc vim git ctags cscope xclip  astyle tmux#python-setuptools python-devel
 fi
 
 ##Add HomeBrew support on  Mac OS
