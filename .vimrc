@@ -78,26 +78,26 @@ autocmd InsertEnter * se nocul
 autocmd InsertLeave * se cuc
 autocmd InsertEnter * se nocuc
 
-set shortmess=atI               " 启动的时候不显示那个援助乌干达儿童的提示  
-set go=                         " 不要图形按钮  
+set shortmess=atI               " 启动的时候不显示那个援助乌干达儿童的提示
+set go=                         " 不要图形按钮
 
 if has('gui_running')
         "http://ethanschoonover.com/solarized
         color solarized
         set background=dark
 else
-        color torte                    " 设置背景主题  
+        color torte                    " 设置背景主题
 endif
-"set guifont=Courier_New:h10:cANSI   " 设置字体  
+"set guifont=Courier_New:h10:cANSI   " 设置字体
 "set guifont=WenQuanYi\ Zen\ Hei\ Mono\ 12.5
 
-set ruler                       " 显示标尺  
-set showcmd                     " 输入的命令显示出来，看的清楚些  
-set scrolloff=3                 " 光标移动到buffer的顶部和底部时保持3行距离  
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}   "状态行显示的内容  
-set laststatus=2                " 启动显示状态行(1),总是显示状态行(2)  
-set foldenable                  " 允许折叠  
-"set foldmethod=manual          " 手动折叠  
+set ruler                       " 显示标尺
+set showcmd                     " 输入的命令显示出来，看的清楚些
+set scrolloff=3                 " 光标移动到buffer的顶部和底部时保持3行距离
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}   "状态行显示的内容
+set laststatus=2                " 启动显示状态行(1),总是显示状态行(2)
+set foldenable                  " 允许折叠
+"set foldmethod=manual          " 手动折叠
 
 "显示中文帮助
 if version >= 603
@@ -140,30 +140,30 @@ au BufRead,BufNewFile *.{js}   set filetype=javascript
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""" newfiletitle
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 新建.c,.h,.sh,.java文件，自动插入文件头 
-autocmd BufNewFile *.cpp,*.[ch],*.sh,*.rb,*.java,*.py exec ":call SetTitle()" 
-""定义函数SetTitle，自动插入文件头 
+" 新建.c,.h,.sh,.java文件，自动插入文件头
+autocmd BufNewFile *.cpp,*.[ch],*.sh,*.rb,*.java,*.py exec ":call SetTitle()"
+""定义函数SetTitle，自动插入文件头
 
-func SetTitle() 
-	"如果文件类型为.sh文件 
-	if &filetype == 'sh' 
-		call setline(1,"\#!/bin/bash") 
-		call append(line("."), "") 
+func SetTitle()
+	"如果文件类型为.sh文件
+	if &filetype == 'sh'
+		call setline(1,"\#!/bin/bash")
+		call append(line("."), "")
         elseif &filetype == 'python'
                 call setline(1,"#!/usr/bin/env python")
                 call append(line("."),"# coding=utf-8")
-	        call append(line(".")+1, "") 
+	        call append(line(".")+1, "")
         elseif &filetype == 'ruby'
                 call setline(1,"#!/usr/bin/env ruby")
                 call append(line("."),"# encoding: utf-8")
 	        call append(line(".")+1, "")
-	else 
-		call setline(1, "/*************************************************************************") 
-		call append(line("."), "	> File Name: ".expand("%:t")) 
-		call append(line(".")+1, "	> Author: orient lu") 
-		call append(line(".")+2, "	> Mail: lcdsdream@126.com") 
-		call append(line(".")+3, "	> Created Time: ".strftime("%c")) 
-		call append(line(".")+4, " ************************************************************************/") 
+	else
+		call setline(1, "/*************************************************************************")
+		call append(line("."), "	> File Name: ".expand("%:t"))
+		call append(line(".")+1, "	> Author: orient lu")
+		call append(line(".")+2, "	> Mail: lcdsdream@126.com")
+		call append(line(".")+3, "	> Created Time: ".strftime("%c"))
+		call append(line(".")+4, " ************************************************************************/")
 		call append(line(".")+5, "")
 	endif
 
@@ -186,7 +186,7 @@ func SetTitle()
 		call append(line(".")+7,"")
 	endif
 	"新建文件后，自动定位到文件末尾
-endfunc 
+endfunc
 autocmd BufNewFile * normal G
 
 
@@ -204,18 +204,18 @@ map <C-A> ggVG$"+y
 
 vmap <C-c> $"+y
 
-" 去空行  
-nnoremap <F2> :g/^\s*$/d<CR> 
-" 比较文件  
-nnoremap <C-F2> :vert diffsplit 
+" 去空行
+nnoremap <F2> :g/^\s*$/d<CR>
+" 比较文件
+nnoremap <C-F2> :vert diffsplit
 
 nnoremap <Leader>w :%s/\s\+$//<cr>:let @/=''<CR>
 
-" 列出当前目录文件  
+" 列出当前目录文件
 map <silent><F3> :NERDTreeToggle<CR>
 imap <F3> <ESC> :NERDTreeToggle<CR>
-" 打开树状文件目录  
-map <C-F3> \be 
+" 打开树状文件目录
+map <C-F3> \be
 
 map <F4> :call Do_CsTag()<CR>
 map <C-F4> :call Link()<CR>
@@ -286,7 +286,7 @@ nnoremap <Leader>fu :CtrlPFunky<Cr>
 "nnoremap <C-n> :CtrlPFunky<Cr>
 :autocmd BufRead,BufNewFile *.dot map <F5> :w<CR>:!dot -Tjpg -o %<.jpg % && eog %<.jpg  <CR><CR> && exec "redr!"
 
-"mrkdown to HTML  
+"mrkdown to HTML
 nmap md :!~/.vim/markdown.pl % > %.html <CR><CR>
 nmap fi :!firefox %.html & <CR><CR>
 nmap \ \cc
@@ -320,10 +320,10 @@ set autoread
 " quickfix模式
 autocmd FileType c,cpp map <buffer> <leader><space> :w<cr>:make<cr>
 
-"代码补全 
-set completeopt=preview,menu 
-"共享剪贴板  
-"set clipboard+=unnamed 
+"代码补全
+set completeopt=preview,menu
+"共享剪贴板
+"set clipboard+=unnamed
 "自动保存
 set autowrite
 
@@ -343,7 +343,7 @@ set noswapfile
 set ignorecase
 
 " 自动设置目录为当前文件所在目录
-"set autochdir 
+"set autochdir
 
 set linespace=0
 " 增强模式中的命令行自动完成操作
@@ -374,37 +374,37 @@ set completeopt=longest,menu
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" CTags的设定  
+" CTags的设定
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set tags=tags;  
+set tags=tags;
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" cscope的设定  
+" cscope的设定
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ".vim/plugin/cscope_maps.vim
 " show result in quickfix
-" set cscopequickfix=s-,c-,d-,i-,t-,e- 
+" set cscopequickfix=s-,c-,d-,i-,t-,e-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Tag list (ctags) 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
-"默认打开Taglist 
-let Tlist_Sort_Type = "name"    " 按照名称排序  
-let Tlist_Auto_Open=0 
-let Tlist_Ctags_Cmd = '/usr/local/bin/ctags' 
+" Tag list (ctags)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"默认打开Taglist
+let Tlist_Sort_Type = "name"    " 按照名称排序
+let Tlist_Auto_Open=0
+let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
 let Tlist_File_Fold_Auto_Close = 1
-let Tlist_Exit_OnlyWindow = 1 "如果taglist窗口是最后一个窗口，则退出vim 
+let Tlist_Exit_OnlyWindow = 1 "如果taglist窗口是最后一个窗口，则退出vim
 let Tlist_Use_Right_Window = 1 "在右侧窗口中显示taglist窗口
-let Tlist_Compart_Format = 1    " 压缩方式  
-let Tlist_Exist_OnlyWindow = 1  " 如果只有一个buffer，kill窗口也kill掉buffer  
+let Tlist_Compart_Format = 1    " 压缩方式
+let Tlist_Exist_OnlyWindow = 1  " 如果只有一个buffer，kill窗口也kill掉buffer
 let Tlist_Show_One_File=1            "不同时显示多个文件的tag，只显示当前文件的
 
 " minibufexpl插件的一般设置
 let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1  
+let g:miniBufExplModSelTarget = 1
 nmap tl :Tlist<cr>
 
 
@@ -436,7 +436,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
-" required! 
+" required!
 " " vim plugin bundle control, command model
 " "     :BundleInstall     install 安装配置的插件
 " "     :BundleInstall!    update  更新
@@ -460,7 +460,7 @@ Bundle 'tacahiroy/ctrlp-funky'
 Bundle 'ctrlp-modified.vim'
 "自动补全
 Bundle 'Auto-Pairs'
-"剪贴 外间<->vim 
+"剪贴 外间<->vim
 Bundle 'CaptureClipboard'
 
 Bundle 'python-imports.vim'
