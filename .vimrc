@@ -202,11 +202,14 @@ autocmd BufNewFile * normal G
 " 全选
 map <C-A> ggVG$"+y
 
+vmap <C-c> $"+y
+
 " 去空行  
 nnoremap <F2> :g/^\s*$/d<CR> 
 " 比较文件  
 nnoremap <C-F2> :vert diffsplit 
 
+nnoremap <Leader>w :%s/\s\+$//<cr>:let @/=''<CR>
 
 " 列出当前目录文件  
 map <silent><F3> :NERDTreeToggle<CR>
@@ -474,6 +477,7 @@ Bundle 'The-NERD-Commenter'
 " 远程协作
 "Bundle 'FredKSchott/CoVim'
 
+Bundle 'ShowTrailingWhitespace'
 Bundle 'Lokaltog/vim-powerline'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'nvie/vim-flake8'
