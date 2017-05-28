@@ -221,7 +221,7 @@ map <F4> :call Do_CsTag()<CR>
 map <C-F4> :call Link()<CR>
 map <F6> :call Set_index_4()<CR>
 map <C-F6> :call Set_index_kernel()<CR>
-map <C-S-F6> :call Set_index_2()<CR>
+map <S-F6> :call Set_index_2()<CR>
 
 "nnoremap <silent><F5> :A<CR>
 "nnoremap <silent><F5>v :AS<CR>
@@ -259,14 +259,14 @@ imap <C-a> <Esc>^
 imap <C-e> <Esc>$
 
 " tab 切换
-map <S-Left> :tabp<CR>
-map <S-Right> :tabn<CR>
+map <S-h> :tabp<CR>
+map <S-l> :tabn<CR>
 
 imap <C-j> <ESC>
 
 "set clipboard=unnamed
 nnoremap <Leader>fu :CtrlPFunky<Cr>
-"nnoremap <C-n> :CtrlPFunky<Cr>
+nnoremap <Leader>ff :CtrlP<Cr>
 :autocmd BufRead,BufNewFile *.dot map <F5> :w<CR>:!dot -Tjpg -o %<.jpg % && eog %<.jpg  <CR><CR> && exec "redr!"
 
 "mrkdown to HTML
@@ -389,8 +389,6 @@ let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1
-nmap tl :Tlist<cr>
-
 
 "python补全
 let g:pydiction_location = '~/.vim/after/complete-dict'
