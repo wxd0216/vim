@@ -1,43 +1,44 @@
 " luchaodong
 " 20160606
 " monkey year horse month
+" 20170528
+set fileformats=unix,dos,mac
 
 set smartindent
-
-" 自动断行
-"set lbr
-"set fo+=mB
-
-" Tab键的宽度
-set tabstop=8
-" 统一缩进为8
-set softtabstop=8
-set shiftwidth=8
-
-"语言设置
-set langmenu=zh_CN.UTF-8
-
-" 使用空格代替制表符
-"set expandtab
-" 不使用空格代替制表符
-set noexpandtab
+set autoindent
+set cindent
+set tabstop=4 "Tab的宽度
+set softtabstop=4 "统一缩进为
+set shiftwidth=4
+set expandtab "使用空格代替制表符
+"set noexpandtabp "不使用空格代替制表符
 " set expandtab后，设置smarttab，在删除tab（4个空格）只需以下Backspace
 set smarttab
 
-au BufNewFile, BufRead *.py
-                        \set tabstop=4
-                        \ set softtabstop=4
-                        \ set shiftwidth=4
-                        \ set textwidth=79
-                        \ set expandtab
-                        \ set autoindent
-                        \ set fileformat=unix
+set langmenu=zh_CN.UTF-8 "语言设置
+"set lbr "自动断行
+"set fo+=mB
 
-au BufNewFile,BufRead *.js, *.html, *.css
-                        \ set tabstop=2
-                        \ set softtabstop=2
-                        \ set shiftwidth=2
+function! Set_index_4()
+    set tabstop=4
+    set softtabstop=4
+    set shiftwidth=4
+    set expandtab
+    set smarttab
+endf
 
+function! Set_index_kernel()
+    set tabstop=8
+    set softtabstop=8
+    set shiftwidth=8
+    set noexpandtab
+endf
+
+function! Set_index_2()
+    set tabstop=2
+    set softtabstop=2
+    set shiftwidth=2
+endf
 
 " 显示括号配对情况
 set sm
@@ -70,23 +71,24 @@ let python_highlight_all=1
 syntax on
 
 " 显示标尺
-set cul
-set cuc
 " 插入模式关闭
+set cul
 autocmd InsertLeave * se cul
 autocmd InsertEnter * se nocul
-autocmd InsertLeave * se cuc
-autocmd InsertEnter * se nocuc
+"set cuc
+"autocmd InsertLeave * se cuc
+"autocmd InsertEnter * se nocuc
 
 set shortmess=atI               " 启动的时候不显示那个援助乌干达儿童的提示
 set go=                         " 不要图形按钮
 
 if has('gui_running')
-        "http://ethanschoonover.com/solarized
-        color solarized
-        set background=dark
+    "http://ethanschoonover.com/solarized
+    color solarized
+    set background=dark
 else
-        color torte                    " 设置背景主题
+    color torte
+    set background=light
 endif
 "set guifont=Courier_New:h10:cANSI   " 设置字体
 "set guifont=WenQuanYi\ Zen\ Hei\ Mono\ 12.5
@@ -101,16 +103,14 @@ set foldenable                  " 允许折叠
 
 "显示中文帮助
 if version >= 603
-        set helplang=cn
-	set encoding=utf-8
+    set helplang=cn
+    set encoding=utf-8
 endif
-
-" 自动缩进
-set autoindent
-set cindent
 
 " 显示行号
 set number
+set relativenumber
+
 " 历史记录数
 set history=1000
 "搜索逐字符高亮
@@ -119,76 +119,77 @@ set incsearch
 
 " 总是显示状态行
 set cmdheight=2
-" 侦测文件类型
-filetype on
 
-" 为特定文件类型载入相关缩进文件
-filetype indent on
 " 保存全局变量
 set viminfo+=!
 " 带有如下符号的单词不要被换行分割
 set iskeyword+=_,$,@,%,#,-
 " 字符间插入的像素行数目
 
+" 侦测文件类型
+filetype on
+" 为特定文件类型载入相关缩进文件
+filetype indent on
 " markdown配置
 au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn}   set filetype=mkd
 au BufRead,BufNewFile *.{go}   set filetype=go
 au BufRead,BufNewFile *.{js}   set filetype=javascript
-
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""" newfiletitle
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 新建.c,.h,.sh,.java文件，自动插入文件头
 autocmd BufNewFile *.cpp,*.[ch],*.sh,*.rb,*.java,*.py exec ":call SetTitle()"
-""定义函数SetTitle，自动插入文件头
-
 func SetTitle()
-	"如果文件类型为.sh文件
-	if &filetype == 'sh'
-		call setline(1,"\#!/bin/bash")
-		call append(line("."), "")
-        elseif &filetype == 'python'
-                call setline(1,"#!/usr/bin/env python")
-                call append(line("."),"# coding=utf-8")
-	        call append(line(".")+1, "")
-        elseif &filetype == 'ruby'
-                call setline(1,"#!/usr/bin/env ruby")
-                call append(line("."),"# encoding: utf-8")
-	        call append(line(".")+1, "")
-	else
-		call setline(1, "/*************************************************************************")
-		call append(line("."), "	> File Name: ".expand("%:t"))
-		call append(line(".")+1, "	> Author: orient lu")
-		call append(line(".")+2, "	> Mail: lcdsdream@126.com")
-		call append(line(".")+3, "	> Created Time: ".strftime("%c"))
-		call append(line(".")+4, " ************************************************************************/")
-		call append(line(".")+5, "")
-	endif
+    if &filetype == 'sh'
+        call setline(1,"\#!/bin/bash")
+        call append(line("."), "# by orientlu")
+        call append(line(".")+1, "")
+    elseif &filetype == 'python'
+        call setline(1,"#!/usr/bin/env python")
+        call append(line("."),"# coding=utf-8")
+        call append(line(".")+1, "# by orientlu")
+        call append(line(".")+2, "")
+    elseif &filetype == 'ruby'
+        call setline(1,"#!/usr/bin/env ruby")
+        call append(line("."),"# encoding: utf-8")
+        call append(line(".")+1, "# by orientlu")
+        call append(line(".")+2, "")
+    else
+        call setline(1, "/*************************************************************************")
+        call append(line("."), " > File Name: ".expand("%:t"))
+        call append(line(".")+1, " > Author: orientlu")
+        call append(line(".")+2, " > Mail: lcdsdream@126.com")
+        call append(line(".")+3, " > Created Time: ".strftime("%c"))
+        call append(line(".")+4, " ************************************************************************/")
+        call append(line(".")+5, "")
+    endif
 
-	if expand("%:e") == 'cpp'
-		call append(line(".")+6, "#include<iostream>")
-		call append(line(".")+7, "using namespace std;")
-		call append(line(".")+8, "")
-	endif
-	if &filetype == 'c'
-		call append(line(".")+6, "#include<stdio.h>")
-		call append(line(".")+7, "")
-	endif
-	if expand("%:e") == 'h'
-		call append(line(".")+6, "#ifndef _".toupper(expand("%:t:r"))."_H")
-		call append(line(".")+7, "#define _".toupper(expand("%:t:r"))."_H")
-		call append(line(".")+8, "#endif")
-	endif
-	if &filetype == 'java'
-		call append(line(".")+6,"public class ".expand("%:t:r"))
-		call append(line(".")+7,"")
-	endif
-	"新建文件后，自动定位到文件末尾
+    if expand("%:e") == 'cpp'
+        call append(line(".")+6, "#include<iostream>")
+        call append(line(".")+7, "using namespace std;")
+        call append(line(".")+8, "")
+    endif
+    if &filetype == 'c'
+        call append(line(".")+6, "#include<stdio.h>")
+        call append(line(".")+7, "")
+    endif
+    if expand("%:e") == 'h'
+        call append(line(".")+6, "#ifndef _".toupper(expand("%:t:r"))."_H")
+        call append(line(".")+7, "#define _".toupper(expand("%:t:r"))."_H")
+        call append(line(".")+8, "#endif")
+    endif
+    if &filetype == 'java'
+        call append(line(".")+6,"public class ".expand("%:t:r"))
+        call append(line(".")+7,"")
+    endif
+    "新建文件后，自动定位到文件末尾
 endfunc
 autocmd BufNewFile * normal G
 
+"file plugin linux style will format c/cpp
+"au BufNewFile,BufRead *.py exec ":call Set_index_4()" "default tab
+au BufNewFile,BufRead *.js,*.html,*.css exec ":call Set_index_2()"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""" keyboardmap
@@ -201,9 +202,8 @@ autocmd BufNewFile * normal G
 
 " 全选
 map <C-A> ggVG$"+y
-
+" copy after select
 vmap <C-c> $"+y
-
 " 去空行
 nnoremap <F2> :g/^\s*$/d<CR>
 " 比较文件
@@ -221,52 +221,35 @@ map <F4> :call Do_CsTag()<CR>
 map <C-F4> :call Link()<CR>
 map <F6> :call Set_index_4()<CR>
 map <C-F6> :call Set_index_kernel()<CR>
+map <C-S-F6> :call Set_index_2()<CR>
 
-nnoremap <silent><F5> :A<CR>
+"nnoremap <silent><F5> :A<CR>
 "nnoremap <silent><F5>v :AS<CR>
 "nnoremap <silent><F5>s :AV<CR>
 "nnoremap <silent><C-F5>  :IHS<CR>
 "nnoremap <silent><C-F5>v :IHV<CR>
 
 nmap <silent><F9> <ESC>:Tlist<RETURN>
-
-nmap <silent><F11> <ESC>:ConqueTerm bash<RETURN>
+"nmap <silent><F11> <ESC>:ConqueTerm bash<RETURN>
 
 " 代码格式化
 map <F12> gg=G
 
 function! Link()
-	if filereadable("tags")
-		set tags=tags
-	endif
-	if filereadable("cscope.out")
-		execute "cs add cscope.out"
-	endif
+    if filereadable("tags")
+        set tags=tags
+    endif
+    if filereadable("cscope.out")
+        execute "cs add cscope.out"
+    endif
 endf
 
 function! Do_CsTag()
-    "silent! execute "!ctags -R --c++-kinds=+p--fields=+iaS--extra=+q"
     silent! execute "!ctags -R --languages=c++ --langmap=c++:+.inl -h +.inl --c++-kinds=+px --fields=+aiKSz --extra=+q *"
     silent! execute "!find . -name '*.h' -o -name '*.c' -o -name '*.cc' -o -name '*.cpp' -o -name '*.cxx' -o -name '*.hxx' -o -name '*.py' > cscope.files"
     silent!execute "!cscope -bq -i cscope.files"
     execute "cs kill -1"
     execute "cs add cscope.out"
-endf
-
-
-function! Set_index_4()
-    set tabstop=4
-    set softtabstop=4
-    set shiftwidth=4
-    set expandtab
-    set smarttab
-endf
-
-function! Set_index_kernel()
-    set tabstop=8
-    set softtabstop=8
-    set shiftwidth=8
-    set noexpandtab
 endf
 
 "将tab替换为空格
@@ -289,6 +272,7 @@ nnoremap <Leader>fu :CtrlPFunky<Cr>
 "mrkdown to HTML
 nmap md :!~/.vim/markdown.pl % > %.html <CR><CR>
 nmap fi :!firefox %.html & <CR><CR>
+
 nmap \ \cc
 vmap \ \cc
 
@@ -296,10 +280,10 @@ vmap \ \cc
 """""""""" othersetting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("autocmd")
-      autocmd BufReadPost *
-        \ if line("'\"") > 0 && line("'\"") <= line("$") |
-        \   exe "normal g`\"" |
-        \ endif
+    autocmd BufReadPost *
+                \ if line("'\"") > 0 && line("'\"") <= line("$") |
+                \   exe "normal g`\"" |
+                \ endif
 endif
 
 "当打开vim且没有文件时自动打开NERDTree
