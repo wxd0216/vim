@@ -13,8 +13,6 @@ if which brew >/dev/null;then
     brew install vim ctags cscope git astyle tmux
 fi
 
-sudo ln -s /usr/bin/ctags /usr/local/bin/ctags
-
 rm ~/.vim_old_lcd/ -rf
 rm ~/.vimrc_old_lcd -f
 
