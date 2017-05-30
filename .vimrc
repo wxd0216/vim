@@ -63,6 +63,13 @@ let g:syntastic_python_checkers=['pylint']
 let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
 let g:fencview_autodetect=0
 
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 set rtp+=$GOROOT/misc/vim
 
@@ -82,6 +89,7 @@ autocmd InsertEnter * se nocul
 set shortmess=atI               " 启动的时候不显示那个援助乌干达儿童的提示
 set go=                         " 不要图形按钮
 
+set t_Co=256
 if has('gui_running')
     "http://ethanschoonover.com/solarized
     color solarized
