@@ -485,6 +485,8 @@ Bundle 'The-NERD-Commenter'
 
 Bundle 'ShowTrailingWhitespace'
 Bundle 'Lokaltog/vim-powerline'
+Bundle 'davidhalter/jedi-vim'
+Bundle 'vim-syntastic/syntastic'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'nvie/vim-flake8'
 
