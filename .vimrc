@@ -133,7 +133,7 @@ endif
 
 " 显示行号
 set number
-set relativenumber
+"set relativenumber
 
 " 历史记录数
 set history=1000
@@ -261,7 +261,7 @@ map <F12> gg=G
 
 function! Link()
     if filereadable("tags")
-        set tags=tags
+        set tags=tags;,tags
     endif
     if filereadable("cscope.out")
         execute "cs add cscope.out"
@@ -364,7 +364,7 @@ set backspace=2
 "set whichwrap+=<,>,h,l
 
 " 可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位）
-set mouse=a
+set mouse=v
 set selectmode=mouse,key
 " 通过使用: commands命令，告诉我们文件的哪一行被改变过
 set report=0
@@ -384,7 +384,7 @@ set completeopt=longest,menu
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CTags的设定
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set tags=tags;
+set tags=tags;,tags
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
