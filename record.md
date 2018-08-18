@@ -65,3 +65,6 @@ source ~/.bashrc
 	* ctrl-v 黏贴到其他文本
 	* ctrl-shift-v 黏贴到终端/vim 内部命令行
 
+## 安装插件
+    *[youcompleteme](https://github.com/Valloric/YouCompleteMe)
+    *[python换行格式化](https://github.com/sillybun/autoformatpythonstatement)

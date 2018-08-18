@@ -489,6 +489,7 @@ Bundle 'davidhalter/jedi-vim'
 Bundle 'vim-syntastic/syntastic'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'nvie/vim-flake8'
+Plugin 'sillybun/autoformatpythonstatement'
 
 "载入文件类型插件
 filetype plugin on
@@ -500,5 +501,3 @@ set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.pyc,*.png,*.jpg,*.gif             
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_custom_ignore = '\v\.(exe|so|dll)$'
 let g:ctrlp_extensions = ['funky']
-
-
