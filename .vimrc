@@ -248,12 +248,6 @@ map <F6> :call Set_index_4()<CR>
 map <C-F6> :call Set_index_kernel()<CR>
 map <S-F6> :call Set_index_2()<CR>
 
-"nnoremap <silent><F5> :A<CR>
-"nnoremap <silent><F5>v :AS<CR>
-"nnoremap <silent><F5>s :AV<CR>
-"nnoremap <silent><C-F5>  :IHS<CR>
-"nnoremap <silent><C-F5>v :IHV<CR>
-
 nmap <silent><F9> <ESC>:Tlist<RETURN>
 "nmap <silent><F11> <ESC>:ConqueTerm bash<RETURN>
 
