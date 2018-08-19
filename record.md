@@ -70,7 +70,7 @@ source ~/.bashrc
     *[python换行格式化](https://github.com/sillybun/autoformatpythonstatement)
     *[新插件管理工具plug](https://github.com/junegunn/vim-plug)
     *[代码检查](https://github.com/w0rp/ale)
-
+    *[修改比较](https://github.com/mhinz/vim-signify)
 
 ## 问题
     * gvim 启动报错

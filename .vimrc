@@ -458,6 +458,9 @@ Plug 'vim-scripts/indentpython.vim', {'for': ['py','python']}
 Plug 'nvie/vim-flake8', {'for': ['py','python']}
 Plug 'sillybun/autoformatpythonstatement', {'do':'./install.sh'}
 
+"对于有版本控制的文件，标注文件修改
+Plug 'mhinz/vim-signify'
+
 call plug#end()
 
 "载入文件类型插件
