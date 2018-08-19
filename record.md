@@ -66,16 +66,20 @@ source ~/.bashrc
 	* ctrl-shift-v 黏贴到终端/vim 内部命令行
 
 ## 安装插件
-    *[youcompleteme](https://github.com/Valloric/YouCompleteMe)
-    *[python换行格式化](https://github.com/sillybun/autoformatpythonstatement)
-    *[新插件管理工具plug](https://github.com/junegunn/vim-plug)
-    *[代码检查](https://github.com/w0rp/ale)
-    *[修改比较](https://github.com/mhinz/vim-signify)
-    *[cpp/c 语法高亮配色](https://github.com/octol/vim-cpp-enhanced-highlight)
-## 问题
-    * gvim 启动报错
-    ```
-    Gtk-Message: Failed to load module "canberra-gtk-module"
 
-    sudo apt install libcanberra-gtk-module libcanberra-gtk3-module
-    ```
+* [youcompleteme](https://github.com/Valloric/YouCompleteMe)
+* [python换行格式化](https://github.com/sillybun/autoformatpythonstatement)
+* [新插件管理工具plug](https://github.com/junegunn/vim-plug)
+* [代码检查](https://github.com/w0rp/ale)
+* [修改比较](https://github.com/mhinz/vim-signify)
+* [cpp/c 语法高亮配色](https://github.com/octol/vim-cpp-enhanced-highlight)
+
+## 问题
+
+* gvim 启动报错
+
+```bash
+Gtk-Message: Failed to load module "canberra-gtk-module"
+
+sudo apt install libcanberra-gtk-module libcanberra-gtk3-module
+```
