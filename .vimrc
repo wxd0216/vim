@@ -4,6 +4,8 @@
 " 20170528
 set fileformats=unix,dos,mac
 
+"默认使用 plugin/linuxsty.vim
+"移除下列配置才生效
 set smartindent
 set autoindent
 set cindent
