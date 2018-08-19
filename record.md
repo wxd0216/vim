@@ -71,7 +71,7 @@ source ~/.bashrc
     *[新插件管理工具plug](https://github.com/junegunn/vim-plug)
     *[代码检查](https://github.com/w0rp/ale)
     *[修改比较](https://github.com/mhinz/vim-signify)
-
+    *[cpp/c 语法高亮配色](https://github.com/octol/vim-cpp-enhanced-highlight)
 ## 问题
     * gvim 启动报错
     ```
