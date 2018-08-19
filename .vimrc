@@ -111,7 +111,8 @@ if has('gui_running')
     color solarized
     set background=dark
 else
-    color torte
+    "color torte
+    color zenburn
     set background=light
 endif
 "set guifont=Courier_New:h10:cANSI   " 设置字体
@@ -484,10 +485,15 @@ Bundle 'The-NERD-Commenter'
 "Bundle 'FredKSchott/CoVim'
 
 Bundle 'ShowTrailingWhitespace'
+"状态栏
 Bundle 'Lokaltog/vim-powerline'
+"python 跳转
 Bundle 'davidhalter/jedi-vim'
+"语法检查
 Bundle 'vim-syntastic/syntastic'
+"python 自动缩进
 Plugin 'vim-scripts/indentpython.vim'
+"PEP8代码风格检查
 Plugin 'nvie/vim-flake8'
 Plugin 'sillybun/autoformatpythonstatement'
 
