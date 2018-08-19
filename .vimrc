@@ -485,7 +485,10 @@ let g:ycm_semantic_triggers =  {
 			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
 			\ 'cs,lua,javascript': ['re!\w{2}'],
 			\ }
+let g:ycm_global_ycm_extra_conf= '~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
 
+
+Plug 'Shougo/echodoc.vim'
 call plug#end()
 
 "载入文件类型插件
