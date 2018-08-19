@@ -178,8 +178,7 @@ func SetTitle()
         call append(line(".")+1, "# by orientlu")
         call append(line(".")+2, "")
     elseif &filetype == 'ruby'
-        call setline(1,"#!/usr/bin/env ruby")
-        call append(line("."),"# encoding: utf-8")
+        call setline(1,"#!/usr/bin/env ruby") call append(line("."),"# encoding: utf-8")
         call append(line(".")+1, "# by orientlu")
         call append(line(".")+2, "")
     else
@@ -435,63 +434,57 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 set nocompatible               " be iMproved
 "filetype off                   " required!
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" let Vundle manage Vundle
-" required!
-" " vim plugin bundle control, command model
-" "     :BundleInstall     install 安装配置的插件
-" "     :BundleInstall!    update  更新
-" "     :BundleClean       remove plugin not in list 删除本地无用插件
-Bundle 'gmarik/vundle'
-
+call plug#begin('~/.vim/plugged')
 " original repos on github
-Bundle 'L9'
+Plug 'ascenator/L9'
 " 集成git， 命令行中 ：Gdiff 看看
-Bundle 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 " 缩进对齐线
-Bundle 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine'
 let g:indentLine_char = '┊'
 " 快速搜索
-Bundle 'FuzzyFinder'
+Plug 'vim-scripts/FuzzyFinder'
 "文件模糊查找
-Bundle 'ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 " 模糊搜索当前文件中所有函数
-Bundle 'tacahiroy/ctrlp-funky'
+Plug 'tacahiroy/ctrlp-funky'
 "模糊搜索本地修改的文件
-Bundle 'ctrlp-modified.vim'
+Plug 'jasoncodes/ctrlp-modified.vim'
 "自动补全
-Bundle 'Auto-Pairs'
+Plug 'jiangmiao/auto-pairs'
 "剪贴 外间<->vim
-Bundle 'CaptureClipboard'
+Plug 'vim-scripts/CaptureClipboard'
 
-Bundle 'python-imports.vim'
+Plug 'mgedmin/python-imports.vim', {'for': ['py','python']}
 "global mark
-Bundle 'last_edit_marker.vim'
+Plug 'vim-scripts/last_edit_marker.vim'
 
-Bundle 'synmark.vim'
+Plug 'vim-scripts/synmark.vim'
 
-Bundle 'SQLComplete.vim'
+Plug 'vim-scripts/SQLComplete.vim', {'for': 'sql'}
 
-Bundle 'Vim-Script-Updater'
+
 "code注释
-Bundle 'The-NERD-Commenter'
+Plug 'vim-scripts/The-NERD-Commenter'
 " 远程协作
-"Bundle 'FredKSchott/CoVim'
+"Plug 'FredKSchott/CoVim'
 
-Bundle 'ShowTrailingWhitespace'
+Plug 'vim-scripts/ShowTrailingWhitespace'
 "状态栏
-Bundle 'Lokaltog/vim-powerline'
+Plug 'Lokaltog/vim-powerline'
 "python 跳转
-Bundle 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim', {'for': ['py','python']}
+
 "语法检查
-Bundle 'vim-syntastic/syntastic'
+Plug 'vim-syntastic/syntastic'
 "python 自动缩进
-Plugin 'vim-scripts/indentpython.vim'
+Plug 'vim-scripts/indentpython.vim', {'for': ['py','python']}
+
 "PEP8代码风格检查
-Plugin 'nvie/vim-flake8'
-Plugin 'sillybun/autoformatpythonstatement'
+Plug 'nvie/vim-flake8', {'for': ['py','python']}
+Plug 'sillybun/autoformatpythonstatement', {'do':'./install.sh'}
+
+call plug#end()
 
 "载入文件类型插件
 filetype plugin on

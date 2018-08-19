@@ -26,10 +26,9 @@ cd ~/.vim/other_sh/run/
 sudo ./run.sh
 cd -
 
-git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 echo "lcddcl start install bundle" > lcdinstall
 echo "please wati" >> lcdinstall
 
-vim lcdinstall -c "BundleInstall" -c "BundleClean" -c "q" -c "q"
+vim lcdinstall -c "PlugInstall" -c "PlugClean" -c "q" -c "q"
 rm lcdinstall
 echo "lcd's vim install finished"

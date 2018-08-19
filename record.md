@@ -68,3 +68,5 @@ source ~/.bashrc
 ## 安装插件
     *[youcompleteme](https://github.com/Valloric/YouCompleteMe)
     *[python换行格式化](https://github.com/sillybun/autoformatpythonstatement)
+    *[新插件管理工具plug](https://github.com/junegunn/vim-plug)
+
