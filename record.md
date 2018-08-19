@@ -38,7 +38,7 @@ source ~/.bashrc
 
 ## 自定义快捷键
 
-* 去空行 ``F2`` 
+* 去空行 ``F2``
 * 比较文件 ``Ctrl-F2``
 * 去除行尾空格 ``\w``
 * 列出文件目录 ``F3``
@@ -69,4 +69,13 @@ source ~/.bashrc
     *[youcompleteme](https://github.com/Valloric/YouCompleteMe)
     *[python换行格式化](https://github.com/sillybun/autoformatpythonstatement)
     *[新插件管理工具plug](https://github.com/junegunn/vim-plug)
+    *[代码检查](https://github.com/w0rp/ale)
 
+
+## 问题
+    * gvim 启动报错
+    ```
+    Gtk-Message: Failed to load module "canberra-gtk-module"
+
+    sudo apt install libcanberra-gtk-module libcanberra-gtk3-module
+    ```

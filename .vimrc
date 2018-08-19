@@ -61,19 +61,12 @@ au FileType html setlocal dict+=~/.vim/dict/css.dict
 " 插件管理
 execute pathogen#infect()
 
-let g:syntastic_python_checkers=['pylint']
-let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
-let g:fencview_autodetect=0
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
 
-" python 自动补全..
+"python 自动跳转..
 "let g:jedi#auto_initialization = 0
 "let g:jedi#auto_vim_configuration = 0
 "let g:jedi#use_tabs_not_buffers = 1
@@ -114,8 +107,10 @@ if has('gui_running')
     set background=dark
 else
     "color torte
-    color zenburn
-    set background=light
+    "color zenburn
+    color hybrid
+    "set background=light
+    set background=dark
 endif
 "set guifont=Courier_New:h10:cANSI   " 设置字体
 "set guifont=WenQuanYi\ Zen\ Hei\ Mono\ 12.5
@@ -157,66 +152,6 @@ set iskeyword+=_,$,@,%,#,-
 filetype on
 " 为特定文件类型载入相关缩进文件
 filetype indent on
-" markdown配置
-au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn}   set filetype=mkd
-au BufRead,BufNewFile *.{go}   set filetype=go
-au BufRead,BufNewFile *.{js}   set filetype=javascript
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""" newfiletitle
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 新建.c,.h,.sh,.java文件，自动插入文件头
-autocmd BufNewFile *.cpp,*.[ch],*.sh,*.rb,*.java,*.py exec ":call SetTitle()"
-func SetTitle()
-    if &filetype == 'sh'
-        call setline(1,"\#!/bin/bash")
-        call append(line("."), "# by orientlu")
-        call append(line(".")+1, "")
-    elseif &filetype == 'python'
-        call setline(1,"#!/usr/bin/env python")
-        call append(line("."),"# coding=utf-8")
-        call append(line(".")+1, "# by orientlu")
-        call append(line(".")+2, "")
-    elseif &filetype == 'ruby'
-        call setline(1,"#!/usr/bin/env ruby") call append(line("."),"# encoding: utf-8")
-        call append(line(".")+1, "# by orientlu")
-        call append(line(".")+2, "")
-    else
-        call setline(1, "/*************************************************************************")
-        call append(line("."), " > File Name: ".expand("%:t"))
-        call append(line(".")+1, " > Author: orientlu")
-        call append(line(".")+2, " > Mail: lcdsdream@126.com")
-        call append(line(".")+3, " > Created Time: ".strftime("%c"))
-        call append(line(".")+4, " ************************************************************************/")
-        call append(line(".")+5, "")
-    endif
-
-    if expand("%:e") == 'cpp'
-        call append(line(".")+6, "#include<iostream>")
-        call append(line(".")+7, "using namespace std;")
-        call append(line(".")+8, "")
-    endif
-    if &filetype == 'c'
-        call append(line(".")+6, "#include<stdio.h>")
-        call append(line(".")+7, "")
-    endif
-    if expand("%:e") == 'h'
-        call append(line(".")+6, "#ifndef _".toupper(expand("%:t:r"))."_H")
-        call append(line(".")+7, "#define _".toupper(expand("%:t:r"))."_H")
-        call append(line(".")+8, "#endif")
-    endif
-    if &filetype == 'java'
-        call append(line(".")+6,"public class ".expand("%:t:r"))
-        call append(line(".")+7,"")
-    endif
-    "新建文件后，自动定位到文件末尾
-endfunc
-autocmd BufNewFile * normal G
-
-"file plugin linux style will format c/cpp
-"au BufNewFile,BufRead *.py exec ":call Set_index_4()" "default tab
-au BufNewFile,BufRead *.js,*.html,*.css exec ":call Set_index_2()"
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""" keyboardmap
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -427,7 +362,6 @@ set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
 
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件管理
 "
@@ -476,7 +410,47 @@ Plug 'Lokaltog/vim-powerline'
 Plug 'davidhalter/jedi-vim', {'for': ['py','python']}
 
 "语法检查
-Plug 'vim-syntastic/syntastic'
+if version < 800
+    Plug 'vim-syntastic/syntastic'
+    let g:fencview_autodetect=0
+    let g:syntastic_python_checkers=['pylint']
+    let g:syntastic_php_checkers=['php', 'phpcs', 'phpmd']
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_auto_loc_list = 1
+    let g:syntastic_check_on_open = 1
+    let g:syntastic_check_on_wq = 0
+else
+    Plug 'w0rp/ale'
+" 对应语言需要安装相应的检查工具
+" https://github.com/w0rp/ale
+"    let g:ale_linters_explicit = 1 "除g:ale_linters指定，其他不可用
+"    let g:ale_linters = {
+"\   'cpp': ['cppcheck','clang','gcc'],
+"\   'c': ['cppcheck','clang', 'gcc'],
+"\   'python': ['pylint'],
+"\   'bash': ['shellcheck'],
+"\   'go': ['golint'],
+"\}
+"
+    let g:ale_sign_column_always = 1
+    let g:ale_completion_delay = 500
+    let g:ale_echo_delay = 20
+    let g:ale_lint_delay = 500
+    let g:ale_echo_msg_format = '[%linter%] %code: %%s'
+    let g:ale_lint_on_text_changed = 'normal'
+    let g:ale_lint_on_insert_leave = 1
+    let g:airline#extensions#ale#enabled = 1
+    "let g:ale_set_quickfix = 1
+    let g:ale_open_list = 1"打开quitfix对话框
+
+    let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
+    let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
+    let g:ale_c_cppcheck_options = ''
+    let g:ale_cpp_cppcheck_options = ''
+
+    let g:ale_sign_error = ">>"
+    let g:ale_sign_warning = "--"
+endif
 "python 自动缩进
 Plug 'vim-scripts/indentpython.vim', {'for': ['py','python']}
 
@@ -496,3 +470,64 @@ set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.pyc,*.png,*.jpg,*.gif             
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_custom_ignore = '\v\.(exe|so|dll)$'
 let g:ctrlp_extensions = ['funky']
+
+
+" markdown配置
+au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn}   set filetype=mkd
+au BufRead,BufNewFile *.{go}   set filetype=go
+au BufRead,BufNewFile *.{js}   set filetype=javascript
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""" newfiletitle
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 新建.c,.h,.sh,.java文件，自动插入文件头
+autocmd BufNewFile *.cpp,*.[ch],*.sh,*.rb,*.java,*.py exec ":call SetTitle()"
+func SetTitle()
+    if &filetype == 'sh'
+        call setline(1,"\#!/bin/bash")
+        call append(line("."), "# by orientlu")
+        call append(line(".")+1, "")
+    elseif &filetype == 'python'
+        call setline(1,"#!/usr/bin/env python")
+        call append(line("."),"# coding=utf-8")
+        call append(line(".")+1, "# by orientlu")
+        call append(line(".")+2, "")
+    elseif &filetype == 'ruby'
+        call setline(1,"#!/usr/bin/env ruby") call append(line("."),"# encoding: utf-8")
+        call append(line(".")+1, "# by orientlu")
+        call append(line(".")+2, "")
+    else
+        call setline(1, "/*************************************************************************")
+        call append(line("."), " > File Name: ".expand("%:t"))
+        call append(line(".")+1, " > Author: orientlu")
+        call append(line(".")+2, " > Mail: lcdsdream@126.com")
+        call append(line(".")+3, " > Created Time: ".strftime("%c"))
+        call append(line(".")+4, " ************************************************************************/")
+        call append(line(".")+5, "")
+    endif
+
+    if expand("%:e") == 'cpp'
+        call append(line(".")+6, "#include<iostream>")
+        call append(line(".")+7, "using namespace std;")
+        call append(line(".")+8, "")
+    endif
+    if &filetype == 'c'
+        call append(line(".")+6, "#include<stdio.h>")
+        call append(line(".")+7, "")
+    endif
+    if expand("%:e") == 'h'
+        call append(line(".")+6, "#ifndef _".toupper(expand("%:t:r"))."_H")
+        call append(line(".")+7, "#define _".toupper(expand("%:t:r"))."_H")
+        call append(line(".")+8, "#endif")
+    endif
+    if &filetype == 'java'
+        call append(line(".")+6,"public class ".expand("%:t:r"))
+        call append(line(".")+7,"")
+    endif
+    "新建文件后，自动定位到文件末尾
+endfunc
+autocmd BufNewFile * normal G
+
+"file plugin linux style will format c/cpp
+"au BufNewFile,BufRead *.py exec ":call Set_index_4()" "default tab
+au BufNewFile,BufRead *.js,*.html,*.css exec ":call Set_index_2()"
+
