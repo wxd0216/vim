@@ -219,9 +219,11 @@ map <S-l> :tabn<CR>
 
 imap <C-j> <ESC>
 
-"set clipboard=unnamed
-nnoremap <Leader>fu :CtrlPFunky<Cr>
-nnoremap <Leader>ff :CtrlP<Cr>
+"文件函数搜索设置
+let g:Lf_ShortcutF = '<c-p>'       " Ctrl + p 打开文件搜索
+"\p 打开函数列表
+noremap <Leader>p :LeaderfFunction<cr>
+
 :autocmd BufRead,BufNewFile *.dot map <F5> :w<CR>:!dot -Tjpg -o %<.jpg % && eog %<.jpg  <CR><CR> && exec "redr!"
 
 "mrkdown to HTML
@@ -377,13 +379,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'Yggdroot/indentLine'
 let g:indentLine_char = '┊'
 " 快速搜索
-Plug 'vim-scripts/FuzzyFinder'
-"文件模糊查找
-Plug 'ctrlpvim/ctrlp.vim'
-" 模糊搜索当前文件中所有函数
-Plug 'tacahiroy/ctrlp-funky'
-"模糊搜索本地修改的文件
-Plug 'jasoncodes/ctrlp-modified.vim'
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 "自动补全
 Plug 'jiangmiao/auto-pairs'
 "剪贴 外间<->vim
@@ -441,7 +437,7 @@ else
     let g:ale_lint_on_insert_leave = 1
     let g:airline#extensions#ale#enabled = 1
     "let g:ale_set_quickfix = 1
-    let g:ale_open_list = 1"打开quitfix对话框
+    "let g:ale_open_list = 1"打开quitfix对话框
 
     let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
     let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
@@ -494,14 +490,6 @@ call plug#end()
 "载入文件类型插件
 filetype plugin on
 filetype plugin indent on     " required!
-
-"ctrlp设置
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.png,*.jpg,*.gif,cscope*,tags*  " MacOSX/Linux
-set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.pyc,*.png,*.jpg,*.gif             " Windows
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-let g:ctrlp_custom_ignore = '\v\.(exe|so|dll)$'
-let g:ctrlp_extensions = ['funky']
-
 
 " markdown配置
 au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn}   set filetype=mkd

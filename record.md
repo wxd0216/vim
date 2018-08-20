@@ -65,6 +65,11 @@ source ~/.bashrc
 	* ctrl-v 黏贴到其他文本
 	* ctrl-shift-v 黏贴到终端/vim 内部命令行
 
+## 查找
+    ctrl-p  查找文件
+    \p      查找函数
+    以上，查找目标后，ctrl-x 在新水平窗口打开； ctrl-] 在新垂直窗口打开; ctrl-T 新tab打开
+
 ## 安装插件
 
 * [youcompleteme](https://github.com/Valloric/YouCompleteMe)
@@ -73,6 +78,7 @@ source ~/.bashrc
 * [代码检查](https://github.com/w0rp/ale)
 * [修改比较](https://github.com/mhinz/vim-signify)
 * [cpp/c 语法高亮配色](https://github.com/octol/vim-cpp-enhanced-highlight)
+* [高效查找](https://github.com/Yggdroot/LeaderF)
 
 ## 问题
 
