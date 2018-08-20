@@ -37,8 +37,8 @@ global -vu
 ## install new ctags
 
 ```bash
-sudo apt-get install  -y autoreconf pkg-config
-it clone https://github.com/universal-ctags/ctags.git
+sudo apt-get install  -y autoconf pkg-config
+git clone https://github.com/universal-ctags/ctags.git
 cd ./ctags/
 sh ./autogen.sh
 ./configure
