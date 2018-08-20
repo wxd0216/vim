@@ -70,6 +70,17 @@ source ~/.bashrc
     \p      查找函数
     以上，查找目标后，ctrl-x 在新水平窗口打开； ctrl-] 在新垂直窗口打开; ctrl-T 新tab打开
 
+## vim8 支持异步自动更新tags
+安装gtags，更新ctags [文档](install_tags.md)
+自动索引以根目录下的.git .svn ... 确认工程目录，没有这些文件，可以手动添加.root
+查找快捷方式定义
+* <leader>cg - 查看光标下符号的定义
+* <leader>cs - 查看光标下符号的引用
+* <leader>cc - 查看有哪些函数调用了该函数
+* <leader>cf - 查找光标下的文件
+* <leader>ci - 查找哪些文件 include 了本文件
+预览：弹出quickfix 窗口[p查看 P关闭 ]
+
 ## 安装插件
 
 * [youcompleteme](https://github.com/Valloric/YouCompleteMe)
