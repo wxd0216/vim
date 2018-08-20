@@ -23,4 +23,4 @@ wget -qO- https://raw.github.com/lcdsdream/vim/master/setup.sh | sh -x
 
 * [tips.md](tips.md)
 * [record.md](record.md)
-* [install_gtags](install_gtags.md)
+* [install_gtags](install_tags.md)
