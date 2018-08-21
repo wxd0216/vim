@@ -482,7 +482,8 @@ let g:ycm_semantic_triggers =  {
 			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
 			\ 'cs,lua,javascript': ['re!\w{2}'],
 			\ }
-let g:ycm_global_ycm_extra_conf= '~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf= '~/.vim/plugged/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf = 0 "导入工程自己的conf时提示确认
 
 
 Plug 'Shougo/echodoc.vim'
