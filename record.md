@@ -100,3 +100,15 @@ Gtk-Message: Failed to load module "canberra-gtk-module"
 
 sudo apt install libcanberra-gtk-module libcanberra-gtk3-module
 ```
+
+* gtags gtags-cscope job failed
+
+```bash
+配置文件新增
+let g:gutentags_define_advanced_commands = 1
+打开vim
+:GutentagsToggleTrace
+出发错误，比如保存文件
+：messages
+查看log 定位
+```

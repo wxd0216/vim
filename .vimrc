@@ -534,6 +534,12 @@ if version >= 800
     autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cr>
     noremap <Leader>u :PreviewScroll -1<cr> " 往上滚动预览窗口
     noremap <leader>d :PreviewScroll +1<cr> "  往下滚动预览窗口
+
+    "gtags 有问题 debug
+    "打开一下语句，运行:GutentagsToggleTrace
+    ":messages
+    "let g:gutentags_define_advanced_commands = 1
+
 endif
 
 
