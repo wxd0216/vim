@@ -511,6 +511,7 @@ let g:cpp_concepts_highlight = 1
 let g:cpp_no_function_highlight = 1
 
 Plug 'Valloric/YouCompleteMe', {'do':'./install.py --clang-completer --go-completer --java-completer'}
+set completeopt=menu,menuone "关闭自动弹出的函数说明窗口
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_show_diagnostics_ui = 0
 let g:ycm_server_log_level = 'info'
