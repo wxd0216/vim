@@ -11,6 +11,7 @@
 * 对应 C/C++ 文件，打开通过 "vim/plugin/linuxsty.vim" 这个文件插件进行设置为 linux 内核风格。
 * 其他语言，指定设置
 如下，设置了 js 等类型文件缩进方式，其他可以自定添加修改
+
 ```bash
 au BufNewFile,BufRead *.js,*.html,*.css exec ":call Set_index_2()"
 ```
@@ -39,57 +40,57 @@ source ~/.bashrc
 ## 自定义快捷键
 
 * 去空行 ``F2``
-* 比较文件 ``Ctrl-F2``
 * 去除行尾空格 ``\w``
 * 列出文件目录 ``F3``
 * 建立、更新代码查找 tag，cscope ``F4``
 * 设置默认缩进空格 4 个 ``F6``
 * 设置内核缩进风格 ``Ctrl-F6``
 * 设置缩进风格 2个空格 ``Shift-F6``
+* 开关代码检查　``F7``
+* 进行python PE8 检查 ``ctrl-F7``
 * 打开关闭 Tlist ``F9``
 * 代码格式化 ``F12``
-* 当前文件模糊函数查找 ``\fu``
-* 目录下模糊文件查找 ``\ff``
-* 注释 ``\cc``
-* 转换 markdown 文件问 HTML ``md``
+* 当前文件模糊函数查找 ``ctrl-p``
+* 目录下模糊文件查找 ``\p``
 * 将tab替换为空格  ``tt``
 * 退出插入模式并到句首  ``Ctrl-a``
 * 退出插入模式并到句尾 ``Ctrl-e``
 * 退出插入模式 ``Crrl-j``
 * tab 切换 ``Shift-h / Sift-l``
 
-## 复制
+### 复制
 * Ctrl - A 全选复制
 * Ctrl - C 复制 visual模式下  **选中内容**
 	* 复制剪贴板后，不能关闭vim（后台也不可）
 	* ctrl-v 黏贴到其他文本
 	* ctrl-shift-v 黏贴到终端/vim 内部命令行
 
-## 查找
+### 查找
     ctrl-p  查找文件
     \p      查找函数
     以上，查找目标后，ctrl-x 在新水平窗口打开； ctrl-] 在新垂直窗口打开; ctrl-T 新tab打开
 
-## vim8 支持异步自动更新tags
+### vim8 支持异步自动更新tags
 安装gtags，更新ctags [文档](install_tags.md)
 自动索引以根目录下的.git .svn ... 确认工程目录，没有这些文件，可以手动添加.root
 查找快捷方式定义
-* <leader>cg - 查看光标下符号的定义
-* <leader>cs - 查看光标下符号的引用
-* <leader>cc - 查看有哪些函数调用了该函数
-* <leader>cf - 查找光标下的文件
-* <leader>ci - 查找哪些文件 include 了本文件
-预览：弹出quickfix 窗口[p查看 P关闭 ]
+* ``<leader>cg`` - 查看光标下符号的定义
+* ``<leader>cs`` - 查看光标下符号的引用
+* ``<leader>cc`` - 查看有哪些函数调用了该函数
+* ``<leader>cf`` - 查找光标下的文件
+* ``<leader>ci`` - 查找哪些文件 include 了本文件
+查找到索引后跳到弹出的 quikfix 窗口，停留在想查看索引行上，按 ``小P``直接打开预览窗口，``大P``关闭预览，``\d`` 和 ``\u`` 向上向下滚动预览窗口。
 
-## 安装插件
+### 在vim 中直接打开终端
+* ConqueTermSplit bash<CR>
+* ConqueTermVSplit bash<CR>
 
-* [youcompleteme](https://github.com/Valloric/YouCompleteMe)
-* [python换行格式化](https://github.com/sillybun/autoformatpythonstatement)
-* [新插件管理工具plug](https://github.com/junegunn/vim-plug)
-* [代码检查](https://github.com/w0rp/ale)
-* [修改比较](https://github.com/mhinz/vim-signify)
-* [cpp/c 语法高亮配色](https://github.com/octol/vim-cpp-enhanced-highlight)
-* [高效查找](https://github.com/Yggdroot/LeaderF)
+### 编写markdown文件
+编写markdown文件(`*.md`)的时候，在normal模式下按 `md` 即可在当前目录下生成相应的`html`文件
+- 生成之后还是在normal模式按`fi`可以使用firefox打开相应的`html`文件预览
+- 如果打开过程中屏幕出现一些混乱信息，可以按`Ctrl + l`来恢复
+
+---
 
 ## 问题
 
