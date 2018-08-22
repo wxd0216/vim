@@ -49,35 +49,21 @@ set selection=inclusive
 " 右键单击弹出快捷菜单
 set mousemodel=popup
 
-au FileType php setlocal dict+=~/.vim/dict/php_funclist.dict
-au FileType css setlocal dict+=~/.vim/dict/css.dict
-au FileType c setlocal dict+=~/.vim/dict/c.dict
-au FileType cpp setlocal dict+=~/.vim/dict/cpp.dict
-au FileType scale setlocal dict+=~/.vim/dict/scale.dict
-au FileType javascript setlocal dict+=~/.vim/dict/javascript.dict
-au FileType html setlocal dict+=~/.vim/dict/javascript.dict
-au FileType html setlocal dict+=~/.vim/dict/css.dict
+
+filetype plugin on
+filetype plugin indent on     " required!
+
+"au FileType php setlocal dict+=~/.vim/dict/php_funclist.dict
+"au FileType css setlocal dict+=~/.vim/dict/css.dict
+"au FileType c setlocal dict+=~/.vim/dict/c.dict
+"au FileType cpp setlocal dict+=~/.vim/dict/cpp.dict
+"au FileType scale setlocal dict+=~/.vim/dict/scale.dict
+"au FileType javascript setlocal dict+=~/.vim/dict/javascript.dict
+"au FileType html setlocal dict+=~/.vim/dict/javascript.dict
+"au FileType html setlocal dict+=~/.vim/dict/css.dict
 
 " 插件管理
 execute pathogen#infect()
-
-
-
-"python 自动跳转..
-"let g:jedi#auto_initialization = 0
-"let g:jedi#auto_vim_configuration = 0
-"let g:jedi#use_tabs_not_buffers = 1
-let g:jedi#use_splits_not_buffers = "left"
-let g:jedi#popup_on_dot = 1
-let g:jedi#popup_select_first = 1
-let g:jedi#show_call_signatures = "1"
-let g:jedi#goto_command = "<leader>d"
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = ""
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#completions_command = "<S-Space>"
-"let g:jedi#rename_command = "<leader>r"
 
 set rtp+=$GOROOT/misc/vim
 
@@ -152,38 +138,24 @@ filetype indent on
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""" keyboardmap
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"map <C-w> <C-w>w
-"map <C-w>h <C-h>
-"map <C-w>j <C-j>
-"map <C-w>k <C-k>
-"map <C-w>l <C-l>
-
 " 全选
 map <C-A> ggVG$"+y
 " copy after select
 vmap <C-c> $"+y
 " 去空行
 nnoremap <F2> :g/^\s*$/d<CR>
-" 比较文件
-nnoremap <C-F2> :vert diffsplit
-
+"去除行尾空
 nnoremap <Leader>w :%s/\s\+$//<cr>:let @/=''<CR>
-
 " 列出当前目录文件
 map <silent><F3> :NERDTreeToggle<CR>
 imap <F3> <ESC> :NERDTreeToggle<CR>
-" 打开树状文件目录
-map <C-F3> \be
-
 map <F4> :call Do_CsTag()<CR>
 map <C-F4> :call Link()<CR>
 map <F6> :call Set_index_4()<CR>
 map <C-F6> :call Set_index_kernel()<CR>
 map <S-F6> :call Set_index_2()<CR>
-
+map <F7> ::ALEToggle<CR>
 nmap <silent><F9> <ESC>:Tlist<RETURN>
-"nmap <silent><F11> <ESC>:ConqueTerm bash<RETURN>
-
 " 代码格式化
 map <F12> gg=G
 
@@ -204,13 +176,14 @@ function! Do_CsTag()
     execute "cs add cscope.out"
 endf
 
-"将tab替换为空格
+"将tab替换为4空格
 nmap tt :%s/\t/    /g<CR>
 
 imap <C-a> <Esc>^
 imap <C-e> <Esc>$
 
 " tab 切换
+map <S-n> :tabnew<CR>
 map <S-h> :tabp<CR>
 map <S-l> :tabn<CR>
 
@@ -226,9 +199,6 @@ noremap <Leader>p :LeaderfFunction<cr>
 "mrkdown to HTML
 nmap md :!~/.vim/markdown.pl % > %.html <CR><CR>
 nmap fi :!firefox %.html & <CR><CR>
-
-nmap \ \cc
-vmap \ \cc
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""" othersetting
@@ -258,8 +228,6 @@ set autoread
 " quickfix模式
 autocmd FileType c,cpp map <buffer> <leader><space> :w<cr>:make<cr>
 
-"代码补全
-set completeopt=preview,menu
 "共享剪贴板
 "set clipboard+=unnamed
 "自动保存
@@ -307,8 +275,8 @@ set matchtime=1
 " 光标移动到buffer的顶部和底部时保持3行距离
 set scrolloff=3
 
-set completeopt=longest,menu
-
+"set completeopt=longest,menu
+"set completeopt=menu,menuone
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -337,6 +305,7 @@ let Tlist_Use_Right_Window = 1 "在右侧窗口中显示taglist窗口
 let Tlist_Compart_Format = 1    " 压缩方式
 let Tlist_Exist_OnlyWindow = 1  " 如果只有一个buffer，kill窗口也kill掉buffer
 let Tlist_Show_One_File=1            "不同时显示多个文件的tag，只显示当前文件的
+let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
 
 " minibufexpl插件的一般设置
 let g:miniBufExplMapWindowNavVim = 1
@@ -347,12 +316,10 @@ let g:miniBufExplModSelTarget = 1
 "python补全
 let g:pydiction_location = '~/.vim/after/complete-dict'
 let g:pydiction_menu_height = 20
-let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
 let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1
-
 
 set iskeyword+=.
 set termencoding=utf-8
@@ -365,7 +332,6 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 " 插件管理
 "
 set nocompatible               " be iMproved
-"filetype off                   " required!
 
 call plug#begin('~/.vim/plugged')
 " original repos on github
@@ -377,33 +343,44 @@ Plug 'Yggdroot/indentLine'
 let g:indentLine_char = '┊'
 " 快速搜索
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
-"自动补全
-Plug 'jiangmiao/auto-pairs'
 "剪贴 外间<->vim
 Plug 'vim-scripts/CaptureClipboard'
-
+"导入预定义import
 Plug 'mgedmin/python-imports.vim', {'for': ['py','python']}
 "global mark
 Plug 'vim-scripts/last_edit_marker.vim'
-
+"颜色标记
 Plug 'vim-scripts/synmark.vim'
-
-Plug 'vim-scripts/SQLComplete.vim', {'for': 'sql'}
-
-
 "code注释
-Plug 'vim-scripts/The-NERD-Commenter'
+"Plug 'vim-scripts/The-NERD-Commenter'
 " 远程协作
 "Plug 'FredKSchott/CoVim'
 
 Plug 'vim-scripts/ShowTrailingWhitespace'
 "状态栏
 Plug 'Lokaltog/vim-powerline'
+
 "python 跳转
 Plug 'davidhalter/jedi-vim', {'for': ['py','python']}
+"let g:jedi#auto_initialization = 0
+"let g:jedi#auto_vim_configuration = 0
+"let g:jedi#use_tabs_not_buffers = 1
+let g:jedi#use_splits_not_buffers = "left"
+let g:jedi#popup_on_dot = 1
+let g:jedi#popup_select_first = 1
+let g:jedi#show_call_signatures = "1"
+let g:jedi#goto_command = "<leader>d"
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = ""
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<S-Space>"
+"let g:jedi#rename_command = "<leader>r"
 
-"语法检查
+
+" vim8 和之前版本
 if version < 800
+"语法检查 syntastic
     Plug 'vim-syntastic/syntastic'
     let g:fencview_autodetect=0
     let g:syntastic_python_checkers=['pylint']
@@ -412,11 +389,14 @@ if version < 800
     let g:syntastic_auto_loc_list = 1
     let g:syntastic_check_on_open = 1
     let g:syntastic_check_on_wq = 0
-
     set statusline+=%#warningmsg#
     set statusline+=%{SyntasticStatuslineFlag()}
     set statusline+=%*
-else
+
+
+else  " vim8  支持异步
+" ------------------------------------------------------ vim8 异步支持 begin
+"语法检查 ale
     Plug 'w0rp/ale'
 " 对应语言需要安装相应的检查工具
 " https://github.com/w0rp/ale
@@ -437,6 +417,7 @@ else
     let g:ale_lint_on_text_changed = 'normal'
     let g:ale_lint_on_insert_leave = 1
     let g:airline#extensions#ale#enabled = 1
+    let g:ale_java_javac_options = '-encoding UTF-8  -J-Duser.language=en' "java在中文系统提示中文乱码问题
     "let g:ale_set_quickfix = 1
     "let g:ale_open_list = 1"打开quitfix对话框
 
@@ -447,50 +428,12 @@ else
 
     let g:ale_sign_error = ">>"
     let g:ale_sign_warning = "--"
-endif
-"python 自动缩进
-Plug 'vim-scripts/indentpython.vim', {'for': ['py','python']}
 
-"PEP8代码风格检查
-Plug 'nvie/vim-flake8', {'for': ['py','python']}
-Plug 'sillybun/autoformatpythonstatement', {'do':'./install.sh'}
-
-"对于有版本控制的文件，标注文件修改
-Plug 'mhinz/vim-signify'
-
-"c/cpp 语法标注
-Plug 'octol/vim-cpp-enhanced-highlight'
-let g:cpp_class_scope_highlight = 1
-let g:cpp_member_variable_highlight = 1
-let g:cpp_class_decl_highlight = 1
-let g:cpp_experimental_simple_template_highlight = 1
-let g:cpp_experimental_template_highlight = 1
-let g:cpp_concepts_highlight = 1
-let g:cpp_no_function_highlight = 1
-
-Plug 'Valloric/YouCompleteMe', {'do':'./install.py --clang-completer --go-completer --java-completer'}
-let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_show_diagnostics_ui = 0
-let g:ycm_server_log_level = 'info'
-let g:ycm_min_num_identifier_candidate_chars = 2
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-let g:ycm_complete_in_strings=1
-let g:ycm_key_invoke_completion = '<c-y>'
-set completeopt=menu,menuone
-noremap <c-y> <NOP>
-let g:ycm_semantic_triggers =  {
-			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
-			\ 'cs,lua,javascript': ['re!\w{2}'],
-			\ }
-let g:ycm_global_ycm_extra_conf= '~/.vim/plugged/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
-let g:ycm_confirm_extra_conf = 0 "导入工程自己的conf时提示确认
-
-
-Plug 'Shougo/echodoc.vim'
+    "打开文件时不进行检查
+    let g:ale_lint_on_enter = 0
 
 
 "自动载入ctags gtags
-if version >= 800
     Plug 'ludovicchabant/vim-gutentags'
     Plug 'skywind3000/gutentags_plus'
 
@@ -541,7 +484,51 @@ if version >= 800
     ":messages
     "let g:gutentags_define_advanced_commands = 1
 
+" ------------------------------------------------------ vim8 异步支持 end
 endif
+
+
+"python 自动缩进
+Plug 'vim-scripts/indentpython.vim', {'for': ['py','python']}
+
+"PEP8代码风格检查
+Plug 'nvie/vim-flake8', {'for': ['py','python']}
+Plug 'sillybun/autoformatpythonstatement', {'do':'./install.sh'}
+
+"对于有版本控制的文件，标注文件修改
+Plug 'mhinz/vim-signify'
+
+"c/cpp 语法标注
+Plug 'octol/vim-cpp-enhanced-highlight'
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_experimental_simple_template_highlight = 1
+let g:cpp_experimental_template_highlight = 1
+let g:cpp_concepts_highlight = 1
+let g:cpp_no_function_highlight = 1
+
+Plug 'Valloric/YouCompleteMe', {'do':'./install.py --clang-completer --go-completer --java-completer'}
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_server_log_level = 'info'
+let g:ycm_min_num_identifier_candidate_chars = 2
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_complete_in_strings=1
+let g:ycm_key_invoke_completion = '<c-y>'
+noremap <c-y> <NOP>
+let g:ycm_semantic_triggers =  {
+			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+			\ 'cs,lua,javascript': ['re!\w{2}'],
+			\ }
+let g:ycm_global_ycm_extra_conf= '~/.vim/plugged/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf = 0 "导入工程自己的conf时提示确认
+
+"自动补全[({})]
+Plug 'jiangmiao/auto-pairs'
+
+Plug 'Shougo/echodoc.vim'
+let g:echodoc_enable_at_startup = 1
 
 
 call plug#end()
