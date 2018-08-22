@@ -359,7 +359,8 @@ Plug 'vim-scripts/synmark.vim'
 
 Plug 'vim-scripts/ShowTrailingWhitespace'
 "状态栏
-Plug 'Lokaltog/vim-powerline'
+"Plug 'Lokaltog/vim-powerline'
+Plug 'vim-airline/vim-airline'
 
 "python 跳转
 Plug 'davidhalter/jedi-vim', {'for': ['py','python']}
