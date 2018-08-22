@@ -155,6 +155,7 @@ map <F6> :call Set_index_4()<CR>
 map <C-F6> :call Set_index_kernel()<CR>
 map <S-F6> :call Set_index_2()<CR>
 map <F7> ::ALEToggle<CR>
+noremap <buffer> <C-F7> :call flake8#Flake8()<CR>
 nmap <silent><F9> <ESC>:Tlist<RETURN>
 " 代码格式化
 map <F12> gg=G
@@ -490,10 +491,11 @@ endif
 
 "python 自动缩进
 Plug 'vim-scripts/indentpython.vim', {'for': ['py','python']}
-
-"PEP8代码风格检查
-Plug 'nvie/vim-flake8', {'for': ['py','python']}
+"换行格式化
 Plug 'sillybun/autoformatpythonstatement', {'do':'./install.sh'}
+"PEP8代码风格检查
+"需要安装flake8
+Plug 'nvie/vim-flake8', {'for': ['py','python']}
 
 "对于有版本控制的文件，标注文件修改
 Plug 'mhinz/vim-signify'
@@ -521,7 +523,8 @@ let g:ycm_semantic_triggers =  {
 			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
 			\ 'cs,lua,javascript': ['re!\w{2}'],
 			\ }
-let g:ycm_global_ycm_extra_conf= '~/.vim/plugged/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
+"let g:ycm_global_ycm_extra_conf= '~/.vim/plugged/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf= '~/.vim/.ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0 "导入工程自己的conf时提示确认
 
 "自动补全[({})]

@@ -59,9 +59,6 @@ let $GTAGSCONF = '/usr/local/share/gtags/gtags.conf'
 第二个参数设置的路径根据实际安装(find / -iname gtags.conf),默认是上面那个。
 
 
-
-
-
 ---
 
 ## 参考
