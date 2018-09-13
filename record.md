@@ -113,3 +113,15 @@ let g:gutentags_define_advanced_commands = 1
 ：messages
 查看log 定位
 ```
+
+* unknown function: pythoncomplete#Complete
+
+```bash
+  if has('python') " if dynamic py|py3, this line already activates python2.
+    let s:python_version = 2
+  elseif has('python3')
+    let s:python_version = 3
+  else
+    let s:python_version = 0
+  endif
+```
