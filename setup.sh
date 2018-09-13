@@ -7,7 +7,7 @@ if which apt-get >/dev/null; then
     sudo apt-get install -y python python3 cmake python-dev python3-dev
     # ale check tool install
     sudo apt-get install -y clang cppcheck pylint flake8 shellcheck golint
-
+    pip install flake8
 elif which yum >/dev/null; then
 	sudo yum install -y gcc vim git ctags cscope xclip  astyle tmux
 fi
