@@ -71,6 +71,15 @@ set rtp+=$GOROOT/misc/vim
 let python_highlight_all=1
 syntax on
 
+if has('python') " if dynamic py|py3, this line already activates python2.
+  let s:python_version = 2
+elseif has('python3')
+  let s:python_version = 3
+else
+  let s:python_version = 0
+endif
+
+
 " 显示标尺
 " 插入模式关闭
 set cul
@@ -394,6 +403,7 @@ if version < 800
     set statusline+=%#warningmsg#
     set statusline+=%{SyntasticStatuslineFlag()}
     set statusline+=%*
+    let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 
 
 else  " vim8  支持异步
@@ -600,4 +610,3 @@ autocmd BufNewFile * normal G
 "file plugin linux style will format c/cpp
 "au BufNewFile,BufRead *.py exec ":call Set_index_4()" "default tab
 au BufNewFile,BufRead *.js,*.html,*.css exec ":call Set_index_2()"
-
