@@ -80,6 +80,8 @@ source ~/.bashrc
 * ``<leader>cf`` - 查找光标下的文件
 * ``<leader>ci`` - 查找哪些文件 include 了本文件
 查找到索引后跳到弹出的 quikfix 窗口，停留在想查看索引行上，按 ``小P``直接打开预览窗口，``大P``关闭预览，``\d`` 和 ``\u`` 向上向下滚动预览窗口。
+ctrl-o 跳转回去
+
 
 ### 在vim 中直接打开终端
 * ConqueTermSplit bash<CR>
