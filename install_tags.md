@@ -1,5 +1,8 @@
 # gtags 安装使用（vim）
 
+## install ctags
+[ Universal CTags ](https://github.com/universal-ctags/ctags/blob/master/docs/autotools.rst)
+
 ## install gtags in ubuntu
 
 直接使用apt-get安装的版本比较低，建议使用官网源码编译
