@@ -388,6 +388,8 @@ let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<S-Space>"
 "let g:jedi#rename_command = "<leader>r"
 
+" go  支持
+Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 
 " vim8 和之前版本
 if version < 800
@@ -403,7 +405,6 @@ if version < 800
     set statusline+=%#warningmsg#
     set statusline+=%{SyntasticStatuslineFlag()}
     set statusline+=%*
-    let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 
 
 else  " vim8  支持异步
@@ -453,7 +454,7 @@ else  " vim8  支持异步
     let $GTAGSCONF = '/usr/local/share/gtags/gtags.conf'
 
     " gutentags 搜索工程目录的标志，当前文件路径向上递归直到碰到这些文件/目录名
-    let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
+    let g:gutentags_project_root = ['.root', 'BLADE_ROOT']
 
     " 所生成的数据文件的名称
     let g:gutentags_ctags_tagfile = '.tags'
@@ -494,7 +495,7 @@ else  " vim8  支持异步
     "gtags 有问题 debug
     "打开一下语句，运行:GutentagsToggleTrace
     ":messages
-    "let g:gutentags_define_advanced_commands = 1
+    let g:gutentags_define_advanced_commands = 1
 
 " ------------------------------------------------------ vim8 异步支持 end
 endif
@@ -610,3 +611,7 @@ autocmd BufNewFile * normal G
 "file plugin linux style will format c/cpp
 "au BufNewFile,BufRead *.py exec ":call Set_index_4()" "default tab
 au BufNewFile,BufRead *.js,*.html,*.css exec ":call Set_index_2()"
+
+augroup filetype
+    autocmd! BufRead,BufNewFile BUILD set filetype=blade
+augroup end

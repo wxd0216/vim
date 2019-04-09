@@ -8,6 +8,7 @@ if which apt-get >/dev/null; then
     # ale check tool install
     sudo apt-get install -y clang cppcheck pylint flake8 shellcheck golint
     pip install flake8
+    pip install pygments
 elif which yum >/dev/null; then
 	sudo yum install -y gcc vim git ctags cscope xclip  astyle tmux
 fi
