@@ -390,6 +390,7 @@ let g:jedi#completions_command = "<S-Space>"
 
 " go  支持
 Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " vim8 和之前版本
 if version < 800
