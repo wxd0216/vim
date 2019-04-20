@@ -393,6 +393,8 @@ Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' 
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 let g:go_def_mode = 'godef' "搜索补全
 
+" 配置文件 toml 支持
+Plug 'cespare/vim-toml'
 " vim8 和之前版本
 if version < 800
 "语法检查 syntastic
