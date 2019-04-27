@@ -308,7 +308,6 @@ set tags=tags;,tags
 "默认打开Taglist
 let Tlist_Sort_Type = "name"    " 按照名称排序
 let Tlist_Auto_Open=0
-let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
 let Tlist_File_Fold_Auto_Close = 1
 let Tlist_Exit_OnlyWindow = 1 "如果taglist窗口是最后一个窗口，则退出vim
 let Tlist_Use_Right_Window = 1 "在右侧窗口中显示taglist窗口

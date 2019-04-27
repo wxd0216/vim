@@ -18,8 +18,7 @@ rm ~/.vimrc_old_lcd -f
 mv -f ~/.vim/  ~/vim_old_lcd/
 mv -f ~/.vimrc ~/vimrc_old_lcd
 
-cd ~/ && git clone git@github.com:orientlu/vim.git
-
+cd ~/ && git clone https://github.com/orientlu/vim.git
 mv -f ~/vim ~/.vim
 cp ~/.vim/.vimrc ~/
 
