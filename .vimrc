@@ -613,7 +613,7 @@ autocmd BufNewFile * normal G
 
 "file plugin linux style will format c/cpp
 "au BufNewFile,BufRead *.py exec ":call Set_index_4()" "default tab
-au BufNewFile,BufRead *.js,*.html,*.css exec ":call Set_index_2()"
+au BufNewFile,BufRead *.js,*.html,*.css,*.yml exec ":call Set_index_2()"
 
 augroup filetype
     autocmd! BufRead,BufNewFile BUILD set filetype=blade
