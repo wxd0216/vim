@@ -165,7 +165,9 @@ map <C-F6> :call Set_index_kernel()<CR>
 map <S-F6> :call Set_index_2()<CR>
 map <F7> ::ALEToggle<CR>
 noremap <buffer> <C-F7> :call flake8#Flake8()<CR>
-nmap <silent><F9> <ESC>:Tlist<RETURN>
+nmap <F9> :TagbarToggle<CR>
+"nmap <silent><F9> <ESC>:Tlist<RETURN>
+"
 " 代码格式化
 map <F12> gg=G
 
@@ -306,15 +308,15 @@ set tags=tags;,tags
 " Tag list (ctags)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "默认打开Taglist
-let Tlist_Sort_Type = "name"    " 按照名称排序
-let Tlist_Auto_Open=0
-let Tlist_File_Fold_Auto_Close = 1
-let Tlist_Exit_OnlyWindow = 1 "如果taglist窗口是最后一个窗口，则退出vim
-let Tlist_Use_Right_Window = 1 "在右侧窗口中显示taglist窗口
-let Tlist_Compart_Format = 1    " 压缩方式
-let Tlist_Exist_OnlyWindow = 1  " 如果只有一个buffer，kill窗口也kill掉buffer
-let Tlist_Show_One_File=1            "不同时显示多个文件的tag，只显示当前文件的
-let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
+"let Tlist_Sort_Type = "name"    " 按照名称排序
+"let Tlist_Auto_Open=0
+"let Tlist_File_Fold_Auto_Close = 1
+"let Tlist_Exit_OnlyWindow = 1 "如果taglist窗口是最后一个窗口，则退出vim
+"let Tlist_Use_Right_Window = 1 "在右侧窗口中显示taglist窗口
+"let Tlist_Compart_Format = 1    " 压缩方式
+"let Tlist_Exist_OnlyWindow = 1  " 如果只有一个buffer，kill窗口也kill掉buffer
+"let Tlist_Show_One_File=1            "不同时显示多个文件的tag，只显示当前文件的
+"let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
 
 " minibufexpl插件的一般设置
 let g:miniBufExplMapWindowNavVim = 1
@@ -388,9 +390,39 @@ let g:jedi#completions_command = "<S-Space>"
 "let g:jedi#rename_command = "<leader>r"
 
 " go  支持
+" 配置好go ptah
 Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 let g:go_def_mode = 'godef' "搜索补全
+Plug 'majutsushi/tagbar', {'do' : 'go get -u github.com/jstemmer/gotags'}
+":h tagbar-issues to get help
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'f:functions',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'p:package',
+        \ 'i:imports',
+        \ 'e:embedded',
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
 
 " 配置文件 toml 支持
 Plug 'cespare/vim-toml'
@@ -457,7 +489,7 @@ else  " vim8  支持异步
     let $GTAGSCONF = '/usr/local/share/gtags/gtags.conf'
 
     " gutentags 搜索工程目录的标志，当前文件路径向上递归直到碰到这些文件/目录名
-    let g:gutentags_project_root = ['.root', 'BLADE_ROOT']
+    let g:gutentags_project_root = ['.root', 'BLADE_ROOT', '.git', 'go.mod']
 
     " 所生成的数据文件的名称
     let g:gutentags_ctags_tagfile = '.tags'
