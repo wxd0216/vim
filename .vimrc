@@ -21,6 +21,9 @@ set langmenu=zh_CN.UTF-8 "语言设置
 "set lbr "自动断行
 "set fo+=mB
 
+" close the noise bell
+set vb t_vb=
+
 function! Set_index_4()
     set tabstop=4
     set softtabstop=4
