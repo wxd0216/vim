@@ -11,7 +11,23 @@ if which apt-get >/dev/null; then
     pip install pygments
 elif which yum >/dev/null; then
 	sudo yum install -y gcc vim git ctags cscope xclip  astyle tmux
+elif which brew >/dev/null; then
+	brew install ctags cscope  tmux git astyle cmake 
+	brew install python@2 python@3  
+	brew install cppcheck  flake8 shellcheck
+	pip install pylink-square
+	pip install flake8
+	pip install pygments
+
+	brew install go
+	go get -u github.com/golang/lint/golint
+
+	## mac can auto install global and ctags
+	brew install global
+	bnrew unlink ctags
+	brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 fi
+
 rm ~/.vim_old_lcd/ -rf
 rm ~/.vimrc_old_lcd -f
 

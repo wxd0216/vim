@@ -490,6 +490,7 @@ else  " vim8  支持异步
 
     let $GTAGSLABEL = 'native-pygments'
     let $GTAGSCONF = '/usr/local/share/gtags/gtags.conf'
+    "let $GTAGSCONF = '/usr/local/Cellar/global/6.6.3/share/gtags/gtags.conf'
 
     " gutentags 搜索工程目录的标志，当前文件路径向上递归直到碰到这些文件/目录名
     let g:gutentags_project_root = ['.root', 'BLADE_ROOT', '.git', 'go.mod']
