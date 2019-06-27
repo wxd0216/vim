@@ -1,0 +1,6 @@
+cscope*
+tag*
+*.swp
+*.o
+.vscode
+.root
