@@ -4,13 +4,18 @@ echo "Start Start Start !!!\n"
 echo "Install app"
 if which apt-get >/dev/null; then
 	sudo apt-get install -y vim vim-gtk ctags cscope xclip git astyle tmux cmake g++
-    sudo apt-get install -y python python3 cmake python-dev python3-dev
+    sudo apt-get install -y python python3  python-dev python3-dev
     # ale check tool install
     sudo apt-get install -y clang cppcheck pylint flake8 shellcheck golint
     pip install flake8
     pip install pygments
 elif which yum >/dev/null; then
-	sudo yum install -y gcc vim git ctags cscope xclip  astyle tmux
+	sudo yum install -y gcc vim git ctags cscope xclip  astyle tmux cmake g++
+	sudo yum install -y python python3 python-devel python3-devel
+	sudo yum install -y clang cppcheck pylint flake8 shellcheck golint
+    	sudo pip install flake8
+	#sudo pip install   --proxy=xxx
+    	sudo pip install pygments
 elif which brew >/dev/null; then
 	brew install ctags cscope  tmux git astyle cmake 
 	brew install python@2 python@3  
