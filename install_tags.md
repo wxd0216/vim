@@ -1,8 +1,5 @@
 # gtags 安装使用（vim）
 
-## install ctags
-[ Universal CTags ](https://github.com/universal-ctags/ctags/blob/master/docs/autotools.rst)
-
 ## install gtags in ubuntu
 
 直接使用apt-get安装的版本比较低，建议使用官网源码编译
@@ -19,6 +16,10 @@ sudo apt-get install -y autoconf bison flex gperf libtool-bin texinfo
 ./configure --with-sqlite3   # gtags可以使用Sqlite3作为数据库, 在编译时需要加这个参数
 make -j4
 sudo make install
+```
+```bash
+# 报错需要 std99 的，直接修改下源码，不要直接for中初始i即可
+vim ./gtags-cscope/find.c 
 ```
 
 ### 扩展支持其他语言
@@ -38,6 +39,7 @@ global -vu
 ```
 
 ## install new ctags
+[ Universal CTags ](https://github.com/universal-ctags/ctags/blob/master/docs/autotools.rst)
 
 ```bash
 sudo apt-get install  -y autoconf pkg-config
