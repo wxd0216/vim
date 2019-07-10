@@ -103,6 +103,7 @@ if has('gui_running')
 else
     "color torte
     "color zenburn
+    "color solarized
     color hybrid
     "set background=light
     set background=dark
@@ -198,9 +199,9 @@ imap <C-a> <Esc>^
 imap <C-e> <Esc>$
 
 " tab 切换
-map <S-n> :tabnew<CR>
-map <S-h> :tabp<CR>
-map <S-l> :tabn<CR>
+map <C-n> :tabnew<CR>
+map <C-h> :tabp<CR>
+map <C-l> :tabn<CR>
 
 imap <C-j> <ESC>
 
@@ -528,8 +529,8 @@ else  " vim8  支持异步
     "P 预览 大p关闭
     autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<cr>
     autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cr>
-    noremap <Leader>u :PreviewScroll -1<cr> " 往上滚动预览窗口
-    noremap <leader>d :PreviewScroll +1<cr> "  往下滚动预览窗口
+    noremap <S-k> :PreviewScroll -1<cr> " 往上滚动预览窗口
+    noremap <S-j> :PreviewScroll +1<cr> "  往下滚动预览窗口
 
     "gtags 有问题 debug
     "打开一下语句，运行:GutentagsToggleTrace
