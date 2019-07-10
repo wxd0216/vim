@@ -127,3 +127,13 @@ let g:gutentags_define_advanced_commands = 1
     let s:python_version = 0
   endif
 ```
+
+* 状态栏显示问题
+设置字体库
+```bash
+wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+mv ./PowerlineSymbols.otf /usr/share/fonts/
+mv ./10-powerline-symbols.conf /etc/fonts/conf.d/
+sudo fc-cache -fv
+```
