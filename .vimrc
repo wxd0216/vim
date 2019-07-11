@@ -366,7 +366,7 @@ Plug 'vim-scripts/last_edit_marker.vim'
 "颜色标记
 Plug 'vim-scripts/synmark.vim'
 "code注释
-"Plug 'vim-scripts/The-NERD-Commenter'
+Plug 'orientlu/nerdcommenter'
 " 远程协作
 "Plug 'FredKSchott/CoVim'
 
