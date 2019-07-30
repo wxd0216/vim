@@ -106,6 +106,8 @@ sudo apt install libcanberra-gtk-module libcanberra-gtk3-module
 
 * gtags gtags-cscope job failed
 
+尝试删除 cache 下的tag，可能是建立tag时推出导致文件有问题；比较的项目，tag 运行时间会长一点；
+
 ```bash
 配置文件新增
 let g:gutentags_define_advanced_commands = 1
@@ -115,6 +117,7 @@ let g:gutentags_define_advanced_commands = 1
 ：messages
 查看log 定位
 ```
+
 
 * unknown function: pythoncomplete#Complete
 
