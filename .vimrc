@@ -219,10 +219,11 @@ nmap fi :!firefox %.html & <CR><CR>
 """""""""" othersetting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("autocmd")
-    autocmd BufReadPost *
-                \ if line("'\"") > 0 && line("'\"") <= line("$") |
-                \   exe "normal g`\"" |
-                \ endif
+    "autocmd BufReadPost *
+    "           \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    "           \   exe "normal g`\"" |
+    "          \ endif
+    au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 endif
 
 "当打开vim且没有文件时自动打开NERDTree
