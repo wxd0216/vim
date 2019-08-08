@@ -4,6 +4,8 @@
 " 20170528
 set fileformats=unix,dos,mac
 
+set nocompatible               " be iMproved
+
 "默认使用 plugin/linuxsty.vim
 "移除下列配置才生效
 set smartindent
@@ -346,8 +348,6 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件管理
 "
-set nocompatible               " be iMproved
-
 call plug#begin('~/.vim/plugged')
 " original repos on github
 Plug 'ascenator/L9'
